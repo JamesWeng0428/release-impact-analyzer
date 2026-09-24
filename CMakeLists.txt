@@ -29,6 +29,7 @@ endif()
 
 # Core library: everything the CLI, tests and Python module share.
 add_library(ria_core
+  src/inverted_index.cpp
   src/tokenizer.cpp
 )
 target_include_directories(ria_core PUBLIC include)
@@ -50,6 +51,7 @@ if(RIA_BUILD_TESTS)
 
   enable_testing()
   add_executable(ria_tests
+    tests/test_inverted_index.cpp
     tests/test_tokenizer.cpp
   )
   target_link_libraries(ria_tests PRIVATE ria_core ria_options GTest::gtest_main)

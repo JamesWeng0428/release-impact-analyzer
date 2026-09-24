@@ -56,7 +56,8 @@ Options (pass as `-DNAME=ON`):
 ## Roadmap
 
 - [x] Tokenizer (keeps firmware versions like `31.20` as one term)
-- [ ] Document store + inverted index
+- [x] Inverted index (postings with term frequencies, document lengths)
+- [ ] Document store (external ids, title, device, date)
 - [ ] BM25 ranking + top-k retrieval
 - [ ] Field boosting (device model, firmware version)
 - [ ] Forum crawler (Python, rate-limited, follows robots.txt)
