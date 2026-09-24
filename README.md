@@ -19,6 +19,7 @@ include/ria/   public C++ headers
 src/           C++ core library (ria_core)
 apps/          command-line tool (ria)
 tests/         GoogleTest unit tests
+examples/      small made-up corpus for demos
 python/        pybind11 bindings, used by the evaluation scripts
 ```
 
@@ -30,11 +31,13 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-Try the tokenizer by hand:
+Search a corpus (one document per line); each line typed on stdin is a query:
 
 ```bash
-echo "Edge 1050 won't sync after 31.20" | ./build/ria
+./build/ria examples/sample_posts.txt 3
 ```
+
+`examples/sample_posts.txt` holds a few made-up example posts for demos.
 
 Build the Python module (in its own build directory, without sanitizers):
 
@@ -58,7 +61,8 @@ Options (pass as `-DNAME=ON`):
 - [x] Tokenizer (keeps firmware versions like `31.20` as one term)
 - [x] Inverted index (postings with term frequencies, document lengths)
 - [ ] Document store (external ids, title, device, date)
-- [ ] BM25 ranking + top-k retrieval
+- [x] BM25 ranking + top-k retrieval
+- [ ] Stemming / query expansion ("dropout" vs "drops out", "pair" vs "pairing")
 - [ ] Field boosting (device model, firmware version)
 - [ ] Forum crawler (Python, rate-limited, follows robots.txt)
 - [ ] Changelog parser

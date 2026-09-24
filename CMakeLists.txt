@@ -29,6 +29,7 @@ endif()
 
 # Core library: everything the CLI, tests and Python module share.
 add_library(ria_core
+  src/bm25.cpp
   src/inverted_index.cpp
   src/tokenizer.cpp
 )
@@ -51,6 +52,7 @@ if(RIA_BUILD_TESTS)
 
   enable_testing()
   add_executable(ria_tests
+    tests/test_bm25.cpp
     tests/test_inverted_index.cpp
     tests/test_tokenizer.cpp
   )

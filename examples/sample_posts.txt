@@ -1,0 +1,10 @@
+Edge 1050 keeps disconnecting from my phone and activities fail to sync
+Sync failed message in Garmin Connect after updating to 31.20
+Heart rate strap drops out mid ride on Edge 1050, fixed in beta 31.20
+Battery drains fast after firmware update, backlight setting did not help
+Edge 1050 will not pair with iPhone after factory reset
+Routes disappear from the device after sync even though transfer succeeded
+Power meter connection drops every few minutes since the latest update
+Activities stuck on the device and never upload over Bluetooth or Wi-Fi
+Removing the device from the phone Bluetooth settings and re-pairing fixed sync for me
+Map download over Wi-Fi is slow on Edge 1050
