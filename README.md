@@ -23,6 +23,7 @@ tests/         GoogleTest unit tests
 examples/      small made-up corpus for demos
 python/        pybind11 bindings, used by the evaluation scripts
 crawler/       data collection (Python, standard library only)
+analysis/      per-release analysis of the collected data
 ```
 
 ## Build and test
@@ -68,10 +69,18 @@ committed.
 
 ```bash
 python3 -m crawler.appstore_reviews fetch                      # -> data/appstore_reviews.jsonl
+python3 -m crawler.app_releases                                # -> data/app_releases.jsonl
 python3 -m crawler.appstore_reviews export > data/corpus.txt   # one review per line
 ./build/ria data/corpus.txt 5
-python3 -m pytest -q crawler                                   # offline unit tests
+python3 -m analysis.release_timeline --min-reviews 15          # per-version table
+python3 -m pytest -q crawler analysis                          # offline unit tests
 ```
+
+Apple's Lookup API only describes the current release, so `app_releases`
+records one new version per run; older release dates are estimated from each
+version's earliest review. Garmin Connect's release notes are mostly
+"bug fixes and performance improvements", which is why the impact of each
+release has to be inferred from reviews.
 
 Garmin forum posts are on hold until it is clear that crawling them fits
 Garmin's Terms of Use.
@@ -86,7 +95,8 @@ Garmin's Terms of Use.
 - [ ] Field boosting (device model, firmware version)
 - [x] App Store review fetcher (Garmin Connect, versioned reviews)
 - [ ] Garmin forum posts (on hold: Terms of Use)
-- [ ] Changelog parser
+- [x] Release timeline (official dates + first-review estimates, keyword baseline for connectivity complaints)
+- [ ] Confidence intervals for per-version complaint rates
 - [ ] Relevance labels + evaluation (NDCG@10 vs keyword baseline)
 - [ ] Topic modeling + per-release issue trends
 - [ ] CI regression gates on quality, latency and memory

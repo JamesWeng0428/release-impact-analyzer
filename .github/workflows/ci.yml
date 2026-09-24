@@ -44,5 +44,5 @@ jobs:
           python-version: "3.12"
       - name: Install test tools
         run: pip install pytest
-      - name: Test crawler (no network)
-        run: python -m pytest -q crawler
+      - name: Test crawler and analysis (no network)
+        run: python -m pytest -q crawler analysis
