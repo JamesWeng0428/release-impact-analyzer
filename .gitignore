@@ -2,6 +2,7 @@ build*/
 .cache/
 compile_commands.json
 __pycache__/
+.pytest_cache/
 *.so
 .DS_Store
 

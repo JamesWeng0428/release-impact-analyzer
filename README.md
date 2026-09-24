@@ -6,7 +6,8 @@ Garmin users with sync and Bluetooth problems have to dig through forum threads,
 support FAQs and firmware changelogs to find out whether their issue is a known
 bug and whether a later release fixed it. This project:
 
-1. **Searches** forum posts with a C++ retrieval engine (inverted index + BM25),
+1. **Searches** user reports (App Store reviews; forum posts later) with a C++
+   retrieval engine (inverted index + BM25),
    using a symptom or a changelog entry as the query.
 2. **Mines** complaints with topic modeling and tracks each issue across
    firmware releases, to spot which release introduced a problem and whether a
@@ -21,6 +22,7 @@ apps/          command-line tool (ria)
 tests/         GoogleTest unit tests
 examples/      small made-up corpus for demos
 python/        pybind11 bindings, used by the evaluation scripts
+crawler/       data collection (Python, standard library only)
 ```
 
 ## Build and test
@@ -56,6 +58,24 @@ Options (pass as `-DNAME=ON`):
 | `RIA_WARNINGS_AS_ERRORS` | OFF | `-Werror`; CI turns it on |
 | `RIA_SANITIZE` | OFF | AddressSanitizer + UBSan; CI turns it on |
 
+## Data
+
+Garmin Connect reviews come from Apple's public App Store review feed. Each
+country serves only its most recent reviews, so the fetcher merges every run
+into one JSONL file (keyed by review id); running it weekly builds up history
+across app versions. Reviewer names are not stored, and `data/` is not
+committed.
+
+```bash
+python3 -m crawler.appstore_reviews fetch                      # -> data/appstore_reviews.jsonl
+python3 -m crawler.appstore_reviews export > data/corpus.txt   # one review per line
+./build/ria data/corpus.txt 5
+python3 -m pytest -q crawler                                   # offline unit tests
+```
+
+Garmin forum posts are on hold until it is clear that crawling them fits
+Garmin's Terms of Use.
+
 ## Roadmap
 
 - [x] Tokenizer (keeps firmware versions like `31.20` as one term)
@@ -64,7 +84,8 @@ Options (pass as `-DNAME=ON`):
 - [x] BM25 ranking + top-k retrieval
 - [ ] Stemming / query expansion ("dropout" vs "drops out", "pair" vs "pairing")
 - [ ] Field boosting (device model, firmware version)
-- [ ] Forum crawler (Python, rate-limited, follows robots.txt)
+- [x] App Store review fetcher (Garmin Connect, versioned reviews)
+- [ ] Garmin forum posts (on hold: Terms of Use)
 - [ ] Changelog parser
 - [ ] Relevance labels + evaluation (NDCG@10 vs keyword baseline)
 - [ ] Topic modeling + per-release issue trends
