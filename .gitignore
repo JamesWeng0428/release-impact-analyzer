@@ -1,0 +1,9 @@
+build*/
+.cache/
+compile_commands.json
+__pycache__/
+*.so
+.DS_Store
+
+# Crawled forum posts and changelogs stay local.
+data/
