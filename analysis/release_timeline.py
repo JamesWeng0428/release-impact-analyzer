@@ -62,6 +62,7 @@ def build_timeline(reviews: list[dict], releases: list[dict]) -> list[dict]:
                 "release_date": datetime.fromisoformat(date).date().isoformat(),
                 "date_source": source,
                 "reviews": len(group),
+                "complaints": complaints,
                 "avg_rating": sum(r["rating"] for r in group) / len(group) if group else None,
                 "connectivity_share": complaints / len(group) if group else None,
             }

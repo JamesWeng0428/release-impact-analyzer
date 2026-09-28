@@ -73,6 +73,7 @@ python3 -m crawler.app_releases                                # -> data/app_rel
 python3 -m crawler.appstore_reviews export > data/corpus.txt   # one review per line
 ./build/ria data/corpus.txt 5
 python3 -m analysis.release_timeline --min-reviews 15          # per-version table
+python3 -m analysis.regression                                 # significant changes only (--all for every version)
 python3 -m pytest -q crawler analysis                          # offline unit tests
 ```
 
@@ -96,7 +97,8 @@ Garmin's Terms of Use.
 - [x] App Store review fetcher (Garmin Connect, versioned reviews)
 - [ ] Garmin forum posts (on hold: Terms of Use)
 - [x] Release timeline (official dates + first-review estimates, keyword baseline for connectivity complaints)
-- [ ] Confidence intervals for per-version complaint rates
+- [x] Regression detection: Wilson intervals, one-sided Fisher exact tests against the previous versions, Benjamini-Hochberg FDR control
+- [ ] Fix verification (compare hotfixes with the regressed version and with the pre-regression baseline)
 - [ ] Relevance labels + evaluation (NDCG@10 vs keyword baseline)
 - [ ] Topic modeling + per-release issue trends
 - [ ] CI regression gates on quality, latency and memory
