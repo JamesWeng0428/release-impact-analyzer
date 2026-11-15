@@ -19,6 +19,27 @@ def test_connectivity_baseline():
     assert not tl.is_connectivity_complaint(review("5.29", "", 5, "Syncs perfectly", ""))
 
 
+def test_explicit_failures_from_review_audit():
+    for rating, text in [
+        (4, "My Fenix stopped working and I cannot reconnect it."),
+        (3, "Can’t pair my watch anymore with Garmin Connect."),
+        (1, "Unpaired my watch. Instructions to fix don’t work."),
+        (1, "The update left my watch undiscoverable by the app."),
+        (3, "I had to reset my watch before it would pair again."),
+    ]:
+        assert tl.is_connectivity_complaint(review("5.21.1", "", rating, text=text)), text
+
+
+def test_higher_ratings_need_a_connection_failure():
+    for text in [
+        "No sync issues with my watch.",
+        "I can't customize my watch face. Sync works perfectly.",
+        "I unpaired my headphones to use them elsewhere.",
+        "I reset my watch. It would pair instantly.",
+    ]:
+        assert not tl.is_connectivity_complaint(review("5.21.1", "", 4, text=text)), text
+
+
 def test_build_timeline_prefers_official_dates_and_computes_shares():
     reviews = [
         review("5.28", "2026-08-20T10:00:00-07:00", 1, "Sync failed"),

@@ -28,6 +28,19 @@ _CONNECTIVITY = re.compile(
     re.IGNORECASE,
 )
 
+# Strong failure phrases apply at any rating. Keep the failure cue attached
+# to the connection or device so an unrelated complaint cannot trigger it.
+_ACTION = r"(?:sync|pair|connect|reconnect)\w*"
+_DEVICE = r"(?:watch|device|phone)"
+_FAILURE = re.compile(
+    rf"\b(?:can(?:not|'t)|won't|doesn't|unable to|fails? to|no longer)\s+{_ACTION}\b"
+    rf"|\b{_ACTION}\s+(?:fails?|failed)\b"
+    rf"|\b(?:unpaired|disconnected)\s+(?:(?:my|the|by)\s+)?(?:{_DEVICE}|fenix|forerunner)\b"
+    rf"|\b{_DEVICE}\s+(?:(?:is|was|keeps|gets|getting)\s+)?(?:undiscoverable|disconnect(?:ed|ing|s)?)\b"
+    rf"|\b(?:reset|restart|reboot)\b[^.!?\n]{{0,60}}\bbefore (?:it|they) would (?:pair|connect|sync)\b",
+    re.IGNORECASE,
+)
+
 
 def version_key(version: str) -> tuple[int, ...]:
     """Sort key so that 5.9 < 5.10 < 5.27.3 < 5.28."""
@@ -35,9 +48,9 @@ def version_key(version: str) -> tuple[int, ...]:
 
 
 def is_connectivity_complaint(review: dict) -> bool:
-    """Keyword baseline: a low rating that mentions syncing or connecting."""
-    text = _APP_NAME.sub(" ", f"{review['title']} {review['text']}")
-    return review["rating"] <= 2 and bool(_CONNECTIVITY.search(text))
+    """Count explicit failures at any rating and weaker mentions at 1–2 stars."""
+    text = _APP_NAME.sub(" ", f"{review['title']}. {review['text']}").replace("’", "'")
+    return bool(_FAILURE.search(text) or (review["rating"] <= 2 and _CONNECTIVITY.search(text)))
 
 
 def build_timeline(reviews: list[dict], releases: list[dict]) -> list[dict]:
