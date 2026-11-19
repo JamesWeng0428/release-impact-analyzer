@@ -1,0 +1,6 @@
+query_id,review_id,relevance,assessor,provenance
+example-dev,example-04,2,constructed-example,synthetic
+example-dev,example-05,0,constructed-example,synthetic
+example-test,example-01,2,constructed-example,synthetic
+example-test,example-02,2,constructed-example,synthetic
+example-test,example-03,0,constructed-example,synthetic

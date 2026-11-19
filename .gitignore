@@ -8,3 +8,6 @@ __pycache__/
 
 # Crawled forum posts and changelogs stay local.
 data/
+
+# Local frozen corpora, rankings and annotation text (source reviews stay local).
+evaluation/workspace*/

@@ -1,0 +1,2 @@
+{"id":"example-dev","split":"dev","text":"battery drain","information_need":"A review reporting excessive phone battery consumption; a request for battery charts is not relevant. Synthetic pipeline example."}
+{"id":"example-test","split":"test","text":"sync","information_need":"A review reporting failed watch synchronization; a review reporting successful sync is not relevant. Synthetic pipeline example."}

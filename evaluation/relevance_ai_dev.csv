@@ -1,0 +1,142 @@
+query_id,review_id,relevance,assessor,provenance,rationale
+d01,10655390203,0,codex-ai-pilot,ai,Praises watch features; no sync failure reported.
+d01,11387940606,1,codex-ai-pilot,ai,Watch repeatedly disconnects; data transfer failure is not explicit.
+d01,11708659979,2,codex-ai-pilot,ai,Explicitly says watch data does not sync.
+d01,11838416269,2,codex-ai-pilot,ai,Automatic watch sync fails and requires Bluetooth resets.
+d01,11860585472,2,codex-ai-pilot,ai,Calendar data sync to the watch is incorrect.
+d01,11921830890,2,codex-ai-pilot,ai,Watch and app only sync when both are open.
+d01,12003056524,2,codex-ai-pilot,ai,Watch fitness and sleep data will not sync to the app.
+d01,12981540129,1,codex-ai-pilot,ai,Device sync failure is explicit but the device is unspecified.
+d01,13245925360,1,codex-ai-pilot,ai,Sync failure concerns an HRM sensor rather than a watch.
+d01,13690853994,2,codex-ai-pilot,ai,Fenix 7S will not sync with an iPhone.
+d01,13702481662,2,codex-ai-pilot,ai,Watch will not sync with the phone app after an update.
+d01,13703558188,2,codex-ai-pilot,ai,Forerunner no longer communicates with phone or app.
+d01,13715219285,2,codex-ai-pilot,ai,App cannot find or sync to the watch.
+d01,13988760797,1,codex-ai-pilot,ai,Sync failure is explicit in the title but the device is unspecified.
+d01,13997440444,2,codex-ai-pilot,ai,Fenix 6 repeatedly fails to sync and needs resets.
+d01,14302702607,1,codex-ai-pilot,ai,Watch pairing fails; data synchronization is not explicit.
+d01,14398488527,2,codex-ai-pilot,ai,Training fails to sync correctly with the watch.
+d01,14437383835,2,codex-ai-pilot,ai,Watch has not synced to the app since the update.
+d01,14457185098,2,codex-ai-pilot,ai,Fenix connects to phone but cannot sync data to the app.
+d01,1455238361,1,codex-ai-pilot,ai,Reports partial data sync but does not identify the device.
+d01,1595764034,2,codex-ai-pilot,ai,Vivoactive HR watch fails to sync with a server error.
+d01,3305808485,1,codex-ai-pilot,ai,Reports inconsistent sync across unspecified devices.
+d01,3359107209,2,codex-ai-pilot,ai,Watch fails to sync until repeated forced attempts.
+d01,7969658689,2,codex-ai-pilot,ai,Watch workouts sync only when the app is manually opened.
+d01,8127224919,2,codex-ai-pilot,ai,Automatic watch sync is absent; manual app opening is required.
+d02,13410230850,1,codex-ai-pilot,ai,App and watch fail after updates but pairing is not explicit.
+d02,13689290919,1,codex-ai-pilot,ai,Update breaks pairing for devices not identified as watches.
+d02,13690728095,1,codex-ai-pilot,ai,Update breaks Edge 530 pairing rather than watch pairing.
+d02,13691385733,2,codex-ai-pilot,ai,Fenix watch will not pair after the last update.
+d02,13692177130,1,codex-ai-pilot,ai,Watch sync fails after the update; pairing is not explicit.
+d02,13692682410,2,codex-ai-pilot,ai,Update unpaired the watch and re-pairing was difficult.
+d02,13693243180,2,codex-ai-pilot,ai,Latest app version prevents watch pairing.
+d02,13693971641,2,codex-ai-pilot,ai,Watch had to be reset to pair after the update.
+d02,13694776203,1,codex-ai-pilot,ai,Watch cannot connect after update; pairing or discovery is not explicit.
+d02,13695095668,2,codex-ai-pilot,ai,Watch and phone will not pair since recent updates.
+d02,13697188967,2,codex-ai-pilot,ai,Update unpaired the watch and stopped syncing.
+d02,13697871363,1,codex-ai-pilot,ai,Update prevents re-pairing of unspecified devices.
+d02,13697984050,2,codex-ai-pilot,ai,New update prevents finding and pairing the watch.
+d02,13703774378,2,codex-ai-pilot,ai,Update removed watch association and discovery fails.
+d02,13745573446,1,codex-ai-pilot,ai,Watch discovery fails after an iOS update rather than an app update.
+d02,14076135462,1,codex-ai-pilot,ai,Pairing fails but no update is mentioned.
+d02,14428685355,1,codex-ai-pilot,ai,Repeated pairing fails but no update is mentioned.
+d02,14464266288,1,codex-ai-pilot,ai,Watch needs repeated re-pairing but no update is mentioned.
+d02,14474061981,2,codex-ai-pilot,ai,Title identifies an update and the watch no longer pairs.
+d02,5441408968,1,codex-ai-pilot,ai,Watch loses pairing after phone shutdown rather than an app update.
+d02,9114794525,1,codex-ai-pilot,ai,Watch pairing PIN entry fails but no update is mentioned.
+d03,11760570603,0,codex-ai-pilot,ai,Praises battery life; the problem is connection failure.
+d03,13699873711,2,codex-ai-pilot,ai,Pairing troubleshooting drains both phone and device batteries.
+d03,13758842196,2,codex-ai-pilot,ai,App runs in background and drains the host battery.
+d03,13790292145,2,codex-ai-pilot,ai,App update causes severe overnight phone battery loss.
+d03,13846220491,0,codex-ai-pilot,ai,Watch battery was deliberately exhausted for troubleshooting.
+d03,14167804454,2,codex-ai-pilot,ai,Reports excessive overnight iPhone battery drain.
+d03,14382798251,0,codex-ai-pilot,ai,Body Battery is a fitness metric; no battery drain is reported.
+d03,14393467648,2,codex-ai-pilot,ai,Reports background phone drain and notes it was later fixed.
+d03,14407006349,1,codex-ai-pilot,ai,Battery drain is reported but phone versus watch is unspecified.
+d03,14429621132,1,codex-ai-pilot,ai,Reports watch battery drain after an update.
+d03,14475774134,0,codex-ai-pilot,ai,Praises device battery life; no excessive consumption reported.
+d03,14535093849,0,codex-ai-pilot,ai,Battery stops charging after a year; not an app consumption issue.
+d03,14574558128,2,codex-ai-pilot,ai,App drains iPhone battery within two hours without being opened.
+d03,3561957185,2,codex-ai-pilot,ai,Latest update drains iPhone battery.
+d03,5775484095,1,codex-ai-pilot,ai,Reports Vivoactive watch battery drain rather than phone drain.
+d04,10022497157,0,codex-ai-pilot,ai,Editing and display bugs without an app crash.
+d04,10464560867,0,codex-ai-pilot,ai,Exercise recognition bug without an app crash.
+d04,10607552541,0,codex-ai-pilot,ai,Step sync data loss without an app crash.
+d04,10655390203,0,codex-ai-pilot,ai,Positive watch review without an app crash.
+d04,13047680955,1,codex-ai-pilot,ai,App crashes but startup is not identified as the trigger.
+d04,13511035945,1,codex-ai-pilot,ai,App is stuck at startup; closing or crashing is not explicit.
+d04,13904041381,0,codex-ai-pilot,ai,Positive app review without a crash.
+d04,14166903888,1,codex-ai-pilot,ai,App crashes while editing a workout rather than at startup.
+d04,14428341243,0,codex-ai-pilot,ai,Positive app review without a crash.
+d04,14503234145,0,codex-ai-pilot,ai,Positive app review without a crash.
+d04,1450860480,0,codex-ai-pilot,ai,Explicitly says the app does not crash.
+d04,3355094849,1,codex-ai-pilot,ai,Frequent app crashes without a specified trigger.
+d04,3357249072,1,codex-ai-pilot,ai,App recently started crashing; launch-time failure is unspecified.
+d04,3362265345,1,codex-ai-pilot,ai,Crash occurs during sync rather than at startup.
+d04,3362651048,2,codex-ai-pilot,ai,App crashes after five to ten seconds of use.
+d04,3370013510,2,codex-ai-pilot,ai,App works only a few seconds before crashing; later fixed.
+d04,3619929835,1,codex-ai-pilot,ai,Crash occurs when opening device settings.
+d04,6349251095,1,codex-ai-pilot,ai,Prior crash and current blank screen; launch-time closing is unclear.
+d04,945120276,1,codex-ai-pilot,ai,Crash occurs during activity download rather than launch.
+d04,9541404699,0,codex-ai-pilot,ai,Positive app review without a crash.
+d05,10607552541,0,codex-ai-pilot,ai,Missing step data rather than phone notifications.
+d05,10767464460,0,codex-ai-pilot,ai,Positive review lists notifications without a delivery failure.
+d05,11556907828,2,codex-ai-pilot,ai,Messenger notifications no longer show on the watch.
+d05,11618996518,2,codex-ai-pilot,ai,WhatsApp notifications do not reach the Venu 3.
+d05,12551617547,1,codex-ai-pilot,ai,Selective notification configuration is missing; delivery itself works.
+d05,13126911920,2,codex-ai-pilot,ai,iPhone clock alerts do not reach the Garmin watch.
+d05,13670507301,2,codex-ai-pilot,ai,Notification settings disappeared and WhatsApp alerts cannot be enabled.
+d05,13697662136,0,codex-ai-pilot,ai,Watch connection fails but no notification failure is reported.
+d05,13702298671,0,codex-ai-pilot,ai,Explicitly says phone notifications still arrive on the watch.
+d05,13734972068,0,codex-ai-pilot,ai,Workout data fails to sync; notifications are not mentioned.
+d05,13770170282,2,codex-ai-pilot,ai,Sync failure is accompanied by missing watch notifications.
+d05,13772634481,2,codex-ai-pilot,ai,Vivomove Sport stopped receiving iPhone notifications.
+d05,13807453399,2,codex-ai-pilot,ai,Messages and Instagram alerts fail on the Fenix 8 after an update.
+d05,14030353368,1,codex-ai-pilot,ai,Notifications cannot be received but the watch and phone are unspecified.
+d05,14088129150,0,codex-ai-pilot,ai,Explicitly says the watch receives phone notifications.
+d05,14388054310,2,codex-ai-pilot,ai,Vivomove Trend no longer receives message notifications.
+d05,5176957155,1,codex-ai-pilot,ai,Requests selective app alerts rather than reporting delivery failure.
+d06,12472026679,2,codex-ai-pilot,ai,Objects to the Connect+ paywall and subscription prompts.
+d06,12472260474,2,codex-ai-pilot,ai,Objects to the paid plan and possible further paywalls.
+d06,12477989048,2,codex-ai-pilot,ai,Objects to Garmin subscription charges and hidden features.
+d06,12478831001,2,codex-ai-pilot,ai,Objects to paying for watch features through a subscription.
+d06,12480320953,2,codex-ai-pilot,ai,Complains that new features and challenge benefits require a subscription.
+d06,12480820467,2,codex-ai-pilot,ai,Objects to subscription access to watch insights and future development.
+d06,12496374805,2,codex-ai-pilot,ai,Objects to premium paywalls and subscription-only features.
+d06,12507031530,1,codex-ai-pilot,ai,Criticizes engineering priorities shifting to paid plans rather than fees themselves.
+d06,12527597330,2,codex-ai-pilot,ai,Objects to paying again for app features through subscriptions.
+d06,12576607349,2,codex-ai-pilot,ai,Explicitly calls the subscription a red flag and objects to paywalls.
+d06,12593647547,2,codex-ai-pilot,ai,Rejects subscription-only new features.
+d06,13344890339,2,codex-ai-pilot,ai,Objects to subscription creep and loss of included features.
+d06,14401375585,2,codex-ai-pilot,ai,Objects to subscription requirements after buying expensive hardware.
+d07,11198094579,2,codex-ai-pilot,ai,Redesign reduces home-screen information and prompts a request to revert.
+d07,11205417427,1,codex-ai-pilot,ai,Dislikes the new layout without explaining navigation or information loss.
+d07,11215600645,1,codex-ai-pilot,ai,Says the new layout does not work without further detail.
+d07,11217399099,1,codex-ai-pilot,ai,Objects to icon layout but does not explicitly report difficulty finding data.
+d07,11371927655,1,codex-ai-pilot,ai,Requests the old layout without describing a usability problem.
+d07,11541777768,2,codex-ai-pilot,ai,Explicitly says information is difficult to find after the redesign.
+d07,11736188591,2,codex-ai-pilot,ai,Cannot find information in the new app layout.
+d07,12003056524,1,codex-ai-pilot,ai,Calls layout appalling; the detailed complaint is about sync.
+d07,12184759300,2,codex-ai-pilot,ai,Clutter and small tiles make activity information hard to see.
+d07,13591569971,2,codex-ai-pilot,ai,Data is scattered across sections and requires additional navigation.
+d07,13755062439,0,codex-ai-pilot,ai,Pairing difficulty is unrelated to interface redesign.
+d07,13930756481,0,codex-ai-pilot,ai,Third-party linking policy rather than redesigned navigation.
+d07,1400337590,0,codex-ai-pilot,ai,Exercise matching difficulty without an interface redesign complaint.
+d08,10216006542,2,codex-ai-pilot,ai,Cannot sign into an existing account after a policy update.
+d08,13339396918,1,codex-ai-pilot,ai,Account access problems are mixed with subscription billing and cancellation.
+d08,13492444664,0,codex-ai-pilot,ai,Heart-rate data discrepancy; account is used in a non-login sense.
+d08,13597144209,0,codex-ai-pilot,ai,Praises a reliable web login; no sign-in issue.
+d08,13675943381,0,codex-ai-pilot,ai,Adding a device to an account fails rather than account sign-in.
+d08,13697878543,1,codex-ai-pilot,ai,Deleted account is locked during attempted recreation rather than ordinary sign-in.
+d08,13720851327,0,codex-ai-pilot,ai,Watch connectivity and rewards data loss rather than account sign-in.
+d08,13735379105,0,codex-ai-pilot,ai,Cannot create child accounts; not existing-account sign-in.
+d08,13841901218,2,codex-ai-pilot,ai,Unexpected errors prevent app login.
+d08,13900868628,1,codex-ai-pilot,ai,Sign-in failure concerns third-party RunCasts rather than Garmin Connect itself.
+d08,14011446864,2,codex-ai-pilot,ai,App repeatedly forgets existing login details.
+d08,14320347877,2,codex-ai-pilot,ai,Explicitly says it is impossible to sign into the app.
+d08,14461206994,1,codex-ai-pilot,ai,Objects to mandatory login but does not report authentication failing.
+d08,5399067399,2,codex-ai-pilot,ai,Existing session is lost and requires repeated login after phone restarts.
+d08,7765167502,2,codex-ai-pilot,ai,Cannot log in because the app never reaches credential entry.
+d08,8445413414,2,codex-ai-pilot,ai,An account was created but sign-in fails.
+d08,9200308200,2,codex-ai-pilot,ai,App does not allow sign-in.

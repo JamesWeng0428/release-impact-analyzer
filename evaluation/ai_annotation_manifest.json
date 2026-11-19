@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "annotation_date": "2026-11-16",
+  "annotation_timezone": "America/Chicago",
+  "source": "Codex AI assistant in this chat; direct relevance assessment of the frozen query needs and review text",
+  "exact_model_identifier": "not exposed in this session",
+  "assessors": {
+    "dev": "codex-ai-pilot",
+    "test": "codex-ai-test"
+  },
+  "provenance": "ai",
+  "rubric": {
+    "0": "unrelated or contradicts the requested problem",
+    "1": "partly relevant or missing a required detail",
+    "2": "directly answers the information need"
+  },
+  "procedure": [
+    "Retained the original 141 development labels unchanged.",
+    "Read the title and full text of every unique review in the 292 test pairs with each query information need.",
+    "Judged 16 test queries in four batches; system names, scores and ranks were not displayed during annotation.",
+    "Added one explicit relevance grade and a short rationale per test pair; no rule-based pseudo-labels were generated.",
+    "Wrote all test labels before computing test or combined metrics.",
+    "Scored the original saved rankings without changing retrieval methods, parameters, query split, corpus or pool."
+  ],
+  "limitations": [
+    "Same AI assistant implemented the methods and judged relevance; these are not independent human judgments.",
+    "The query split can share review documents and topics; it is not a temporal or document-disjoint validation.",
+    "P@5 counts partial matches as relevant.",
+    "Pool-relative NDCG does not establish exhaustive corpus recall or that a query has a directly relevant result.",
+    "Test pools t13 and t16 contain no grade-2 direct matches under these AI judgments.",
+    "The combined all-query scores include development queries and are descriptive, not a held-out test estimate."
+  ],
+  "counts": {
+    "dev_pairs": 141,
+    "test_pairs": 292,
+    "all_pairs": 433,
+    "dev_queries": 8,
+    "test_queries": 16,
+    "all_queries": 24
+  },
+  "test_grade_counts": {
+    "0": 81,
+    "1": 121,
+    "2": 90
+  },
+  "test_per_query_grade_counts": {
+    "t01": {
+      "0": 1,
+      "1": 11,
+      "2": 12
+    },
+    "t02": {
+      "0": 4,
+      "1": 14,
+      "2": 6
+    },
+    "t03": {
+      "0": 3,
+      "1": 6,
+      "2": 4
+    },
+    "t04": {
+      "0": 4,
+      "1": 2,
+      "2": 11
+    },
+    "t05": {
+      "0": 8,
+      "1": 5,
+      "2": 5
+    },
+    "t06": {
+      "0": 4,
+      "1": 5,
+      "2": 6
+    },
+    "t07": {
+      "0": 2,
+      "1": 5,
+      "2": 10
+    },
+    "t08": {
+      "0": 11,
+      "1": 3,
+      "2": 12
+    },
+    "t09": {
+      "1": 14,
+      "2": 2
+    },
+    "t10": {
+      "1": 11,
+      "2": 13
+    },
+    "t11": {
+      "0": 3,
+      "1": 11,
+      "2": 2
+    },
+    "t12": {
+      "0": 1,
+      "1": 12,
+      "2": 5
+    },
+    "t13": {
+      "0": 8,
+      "1": 7
+    },
+    "t14": {
+      "0": 8,
+      "1": 9,
+      "2": 1
+    },
+    "t15": {
+      "0": 7,
+      "1": 5,
+      "2": 1
+    },
+    "t16": {
+      "0": 17,
+      "1": 1
+    }
+  },
+  "snapshot_hashes": {
+    "corpus.jsonl": "838338c5c858901b09398f13636e8ad29bd64990c90a3cec100d1c2388d8a01e",
+    "queries.jsonl": "a21eff98ab2c2a876457ff55c78d4508d04e576357d6279097058b684e7c0d42",
+    "runs.jsonl": "994c0efed6506033dc1108698e475613109a11c071f6ae6218af346c92e954c4",
+    "pool.csv": "2f7836bd5a86e0c7a197cd88ec2c8f41e340e97ca02a0cf66326541b3ac8dc9e"
+  },
+  "judgments_sha256": {
+    "relevance_ai_dev.csv": "a5056c2c6d1ebc4b78619f0cccd126c4f478dfb43bf1f18f855c78a03295ff19",
+    "relevance_ai_test.csv": "a13e898862815dc74e648cfca587e7f8fc64c56eb43abc96f1ab5c86a2a4de92",
+    "relevance_ai_all.csv": "320a4f19ebafac0cf31c5186d67f9839bc40576ffeee3509466b3d3b71ef3351"
+  },
+  "reports_sha256": {
+    "ai_dev_report.json": "43ec5c2cb3748380487092fb4eaa347d4d5745cbdd9efa9d4ac17b631ee8f0c2",
+    "ai_test_report.json": "de4d939b8e02f9266459040a456d2e87b770416623ed2a720bf0c4cc0e1bf337",
+    "ai_all_report.json": "b31b76ddd032db68d3744aa818c592afc6a96cf97257d095e0263a516bae77df"
+  },
+  "source_code_sha256": {
+    "retrieval/search.py": "e5bfb162e80135e7e1622ab73f7c1c2dc28ec705935f7842878d50aaa9a48f78",
+    "src/bm25.cpp": "b514f63ed4ed2df9f6d5b73a75459f78bb4a69dc0f4112bf19f35f36877df986",
+    "src/tokenizer.cpp": "7731a32ef0a06e111b1b9085f8f00a252a17832c58ce8d68d856ba11eddccb1c",
+    "src/inverted_index.cpp": "7201804f9e42eeb2d32d818f0f5cda81e89abe29661e5dac13aaa8648b0e5ba7",
+    "python/bindings.cpp": "98d6197522df077b28e8a2ca1bdd5a3cf0d5535ef7dd8e1d15e1c5f74f4800af",
+    "evaluation/retrieval.py": "40ab21efc97ab1cbeb8ae30946fa0772f293215d9f33163643ed5a024831698d"
+  }
+}

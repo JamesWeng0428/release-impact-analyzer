@@ -1,0 +1,259 @@
+{
+  "split": "dev",
+  "query_count": 8,
+  "judgment_provenance": {
+    "ai": 141
+  },
+  "metric_definitions": {
+    "ndcg@10": "gain=2^grade-1; log2(rank+1); pooled IDCG",
+    "precision@5": "grade>0; fixed denominator 5"
+  },
+  "snapshot": {
+    "schema_version": 1,
+    "pool_depth": 10,
+    "systems": [
+      "keyword",
+      "bm25",
+      "bm25_expanded"
+    ],
+    "reviews": 1435,
+    "queries": 24,
+    "pooled_pairs": 433,
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75
+    },
+    "expansions": {
+      "sync": [
+        "syncs",
+        "syncing",
+        "synced",
+        "synchronization",
+        "synchronisation"
+      ],
+      "pair": [
+        "pairing",
+        "paired",
+        "unpaired"
+      ],
+      "disconnect": [
+        "disconnects",
+        "disconnected",
+        "disconnecting",
+        "dropout"
+      ],
+      "crash": [
+        "crashes",
+        "crashing",
+        "crashed"
+      ],
+      "freeze": [
+        "freezes",
+        "freezing",
+        "frozen"
+      ],
+      "notification": [
+        "notifications",
+        "alerts"
+      ],
+      "battery": [
+        "drain",
+        "draining"
+      ],
+      "login": [
+        "signin",
+        "sign",
+        "log"
+      ]
+    },
+    "keyword": "count of distinct query terms present; OR matching",
+    "tie_break": "ascending review ID (lexicographic)",
+    "hashes": {
+      "corpus.jsonl": "838338c5c858901b09398f13636e8ad29bd64990c90a3cec100d1c2388d8a01e",
+      "queries.jsonl": "a21eff98ab2c2a876457ff55c78d4508d04e576357d6279097058b684e7c0d42",
+      "runs.jsonl": "994c0efed6506033dc1108698e475613109a11c071f6ae6218af346c92e954c4",
+      "pool.csv": "2f7836bd5a86e0c7a197cd88ec2c8f41e340e97ca02a0cf66326541b3ac8dc9e"
+    }
+  },
+  "judgments_sha256": "a5056c2c6d1ebc4b78619f0cccd126c4f478dfb43bf1f18f855c78a03295ff19",
+  "warnings": [
+    "AI judgments are a pilot, not independent human ground truth.",
+    "Metrics are relative to this judged pool, not exhaustive corpus relevance."
+  ],
+  "per_query": [
+    {
+      "query_id": "d01",
+      "text": "watch will not sync",
+      "judged_documents": 25,
+      "relevant_documents": 24,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.8726924496217513,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.7144097119277253,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.762815192207169,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d02",
+      "text": "pair watch after update",
+      "judged_documents": 21,
+      "relevant_documents": 21,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.7123824196739038,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6645037490337173,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5303669587865024,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d03",
+      "text": "battery drain phone",
+      "judged_documents": 15,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.7794345063403657,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.841080835545421,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8816013986152427,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d04",
+      "text": "app crash startup",
+      "judged_documents": 20,
+      "relevant_documents": 11,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.36820442373440243,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.3425487607304357,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8428919178014228,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d05",
+      "text": "missing notifications watch",
+      "judged_documents": 17,
+      "relevant_documents": 11,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.3904681729046889,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.7581103286009375,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.7581103286009375,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d06",
+      "text": "subscription paid features",
+      "judged_documents": 13,
+      "relevant_documents": 13,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.955830517697074,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 1.0,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 1.0,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d07",
+      "text": "new layout difficult",
+      "judged_documents": 13,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.9245051374078057,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6736486765086698,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6736486765086698,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d08",
+      "text": "login password account",
+      "judged_documents": 17,
+      "relevant_documents": 12,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.3689266586488295,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.6804113709546147,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.811104194880818,
+          "precision@5": 1.0
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "keyword": {
+      "ndcg@10": 0.6715555357536027,
+      "precision@5": 0.85
+    },
+    "bm25": {
+      "ndcg@10": 0.7093391791626902,
+      "precision@5": 0.95
+    },
+    "bm25_expanded": {
+      "ndcg@10": 0.7825673334250953,
+      "precision@5": 1.0
+    }
+  }
+}

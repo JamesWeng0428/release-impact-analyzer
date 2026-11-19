@@ -1,0 +1,6 @@
+{"id":"example-01","title":"Sync failed","text":"Cannot sync my watch.","app_version":"5.21.1","date":"2026-01-30T12:00:00Z","country":"us","rating":1}
+{"id":"example-02","title":"Syncing broken","text":"The watch is no longer syncing after the update.","app_version":"5.21.1","date":"2026-01-31T12:00:00Z","country":"gb","rating":3}
+{"id":"example-03","title":"Synced perfectly","text":"My watch synced without any issues.","app_version":"5.21.2","date":"2026-02-02T12:00:00Z","country":"ca","rating":5}
+{"id":"example-04","title":"Phone battery","text":"Battery drain worsened overnight.","app_version":"5.21.1","date":"2026-01-31T12:00:00Z","country":"us","rating":2}
+{"id":"example-05","title":"Feature missing","text":"Please add battery charts for my watch.","app_version":"5.21.2","date":"2026-02-03T12:00:00Z","country":"us","rating":3}
+{"id":"example-06","title":"Pricing","text":"The subscription is expensive.","app_version":"5.21.2","date":"2026-02-03T12:00:00Z","country":"us","rating":1}

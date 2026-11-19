@@ -1,0 +1,293 @@
+query_id,review_id,relevance,assessor,provenance,rationale
+t01,11838416269,2,codex-ai-test,ai,Repeated device disconnections require Bluetooth resets to sync.
+t01,12143038241,1,codex-ai-test,ai,Initial HRM connection is unsupported; repeated link loss is not reported.
+t01,13519897742,1,codex-ai-test,ai,"Sync and re-pairing fail, without explicit recurring Bluetooth disconnections."
+t01,13668169689,2,codex-ai-test,ai,"Repeated watch connection loss requires Bluetooth resets, then re-pairing fails."
+t01,13690214404,1,codex-ai-test,ai,Bluetooth connects but the app does not; Bluetooth link loss is not reported.
+t01,13691813790,1,codex-ai-test,ai,App disconnected after one update while Bluetooth can still connect.
+t01,13694872284,2,codex-ai-test,ai,Frequent updates repeatedly disconnect the watch from the app.
+t01,13696095342,1,codex-ai-test,ai,A single update broke Bluetooth discovery; recurring drops are not explicit.
+t01,13704227804,1,codex-ai-test,ai,One update prevents Bluetooth pairing; recurring drops are not explicit.
+t01,13754853988,1,codex-ai-test,ai,Sync and app connection fail despite Bluetooth resets; repeated link loss is unclear.
+t01,13806947143,2,codex-ai-test,ai,Explicitly reports Bluetooth connection loss happening again.
+t01,13919909414,2,codex-ai-test,ai,Watch disconnects and requires repeated resets and reconnection attempts.
+t01,13931137195,2,codex-ai-test,ai,Previously easy connection now requires Bluetooth reconnection or manual sync.
+t01,13942996818,2,codex-ai-test,ai,Explicitly describes unreliable Bluetooth connection and sync.
+t01,14084784800,0,codex-ai-test,ai,MyFitnessPal service unlinking is unrelated to Bluetooth device connection.
+t01,14259362385,2,codex-ai-test,ai,Patchy Bluetooth removes the device several times in one day.
+t01,14274579690,2,codex-ai-test,ai,Forerunner Bluetooth repeatedly disconnects and requires setup.
+t01,14281755012,1,codex-ai-test,ai,Repeated reconnection is reported but the device and Bluetooth are unspecified.
+t01,14388054310,1,codex-ai-test,ai,Missing notifications led to a Bluetooth reset; link instability is not explicit.
+t01,14456166021,1,codex-ai-test,ai,Bluetooth barely works but recurring disconnections are not described.
+t01,14458198208,2,codex-ai-test,ai,App disconnects from the watch multiple times daily and needs re-pairing.
+t01,14468648305,2,codex-ai-test,ai,Watch and app constantly lose connection during use.
+t01,14522187185,1,codex-ai-test,ai,App loses the watch while the review explicitly says Bluetooth remains connected.
+t01,14528715557,2,codex-ai-test,ai,Explicit random Bluetooth drops require reinstalling and re-pairing.
+t02,10607552541,1,codex-ai-test,ai,"Missing step history is related data loss, not a recorded activity missing from the app."
+t02,11339967770,1,codex-ai-test,ai,Nothing updates after syncing but a recorded activity is not specified.
+t02,11921830890,1,codex-ai-test,ai,"Generic sync and sleep-data failure, without a missing recorded activity."
+t02,12184759300,0,codex-ai-test,ai,Activity is visually small in the redesign rather than absent after sync.
+t02,12507031530,1,codex-ai-test,ai,Third-party sync and export fail; the activity is not missing from Garmin Connect.
+t02,12755110626,1,codex-ai-test,ai,"Manual app activity does not sync to the watch, the reverse transfer direction."
+t02,1294148110,2,codex-ai-test,ai,Cycling activities are missing from the app after an update and connection issues.
+t02,13147561833,1,codex-ai-test,ai,Activity sync is generally unreliable but a missing recorded activity is not explicit.
+t02,13245925360,1,codex-ai-test,ai,Calories are zero and sync needs a second attempt; activity absence is not explicit.
+t02,13692177130,1,codex-ai-test,ai,Watch sync generally fails without a specific missing activity.
+t02,13724634743,2,codex-ai-test,ai,Saved activities leave blank app data unless transferred through watch Wi-Fi.
+t02,13734972068,2,codex-ai-test,ai,Recorded workout fails to reach the app and must be entered manually.
+t02,13740494317,1,codex-ai-test,ai,Device sync fails but a recorded activity is not specified.
+t02,13787545750,0,codex-ai-test,ai,Requests disabling successful automatic activity syncing.
+t02,14123586418,2,codex-ai-test,ai,Latest recorded activities fail to appear or upload in the app.
+t02,14271868010,2,codex-ai-test,ai,Recorded activities cannot sync or display in the phone app while offline.
+t02,14335874973,0,codex-ai-test,ai,Requests better activity graphs rather than reporting an absent activity.
+t02,14471020179,1,codex-ai-test,ai,Activity sync depends on internet and connection is unstable; missing activity is not explicit.
+t02,14505800330,0,codex-ai-test,ai,An edited activity remains present; only its personal-record award is missing.
+t02,1595764034,1,codex-ai-test,ai,Generic server sync errors without a specified missing activity.
+t02,2153071893,1,codex-ai-test,ai,"Step counts are missing after sync, not a recorded workout activity."
+t02,3305808485,1,codex-ai-test,ai,Sync is slow and eventually succeeds; missing activity is not reported.
+t02,4241457913,2,codex-ai-test,ai,First of two recorded activities is lost when both are synced together.
+t02,8127224919,1,codex-ai-test,ai,Manual syncing is required and old stats can be lost; recorded activity is unspecified.
+t03,10177847903,0,codex-ai-test,ai,Workout editing fails rather than activity transfer to Strava.
+t03,11222724543,1,codex-ai-test,ai,Watch data upload fails without naming Strava.
+t03,11708659979,2,codex-ai-test,ai,Explicitly reports Garmin app synchronization with Strava failing.
+t03,12056016498,1,codex-ai-test,ai,Ride upload is slow but Strava is not mentioned.
+t03,13600723174,1,codex-ai-test,ai,Strava uploading is a desired use but a failed transfer is not explicit.
+t03,13707665905,2,codex-ai-test,ai,Strava activity upload is blocked by a disconnected device that cannot reconnect.
+t03,13737926740,2,codex-ai-test,ai,Garmin-to-Strava connection broke after an update and will not reconnect.
+t03,13952102467,0,codex-ai-test,ai,Explicitly reports successful uploads to Strava.
+t03,14311942002,1,codex-ai-test,ai,"Requests importing from Strava, the reverse transfer direction."
+t03,14389048218,1,codex-ai-test,ai,Watch-to-app activity transfer fails without mentioning Strava.
+t03,14464223219,0,codex-ai-test,ai,Explicitly reports successful automatic Strava uploads.
+t03,7693207816,1,codex-ai-test,ai,Edge activity upload fails but Strava is not mentioned.
+t03,776801004,2,codex-ai-test,ai,Direct sharing to Strava is unavailable without a computer workaround.
+t04,10765470310,0,codex-ai-test,ai,Praises sleep tracking without reporting missing or inaccurate sleep data.
+t04,11556907828,2,codex-ai-test,ai,Sleep data has not been recorded for three nights.
+t04,11894956392,2,codex-ai-test,ai,"App fails to display watch data, explicitly including sleep."
+t04,11921830890,2,codex-ai-test,ai,Explicitly says sleep data is not recorded.
+t04,12003056524,2,codex-ai-test,ai,Sleep data does not sync to the app.
+t04,12170368418,2,codex-ai-test,ai,Explicitly says sleep and other readings are incorrect.
+t04,1227363918,1,codex-ai-test,ai,Sleep export to HealthKit is missing rather than sleep data in Garmin Connect.
+t04,12287901587,2,codex-ai-test,ai,Sleep metrics on the Venu 3 do not appear on the iPhone.
+t04,12644696179,2,codex-ai-test,ai,Sleep readings change when opened and detailed reports are incorrect.
+t04,12922377676,0,codex-ai-test,ai,Sleep data is praised; the reported mismatch concerns workouts.
+t04,13310030305,0,codex-ai-test,ai,Praises sleep analysis and reliable syncing.
+t04,13728433593,0,codex-ai-test,ai,Mentions useful sleep data without a sleep problem.
+t04,14358532953,2,codex-ai-test,ai,Explicitly reports inaccurate sleep tracking in the watch and app.
+t04,14369151306,2,codex-ai-test,ai,Sleep records cannot be viewed in the app without reception.
+t04,14371468446,2,codex-ai-test,ai,Explicitly distrusts sleep readings while reporting sync difficulty.
+t04,14492622108,1,codex-ai-test,ai,"Sleep metrics are fragmented across the interface, not reported missing or inaccurate."
+t04,14570168690,2,codex-ai-test,ai,"Describes sleep data as generous, indicating overestimated sleep."
+t05,11728059510,1,codex-ai-test,ai,Heart-rate display is unusable but absence or loading failure is not explicit.
+t05,11894956392,2,codex-ai-test,ai,Watch heart-rate data exists but the app displays none of the collected data.
+t05,12031980674,2,codex-ai-test,ai,Historical heart-rate widget statistics disappear after the day ends.
+t05,12091811213,0,codex-ai-test,ai,Praises comprehensive heart-rate statistics without a missing-data complaint.
+t05,12110928451,0,codex-ai-test,ai,Praises heart-rate tracking and dashboard presentation.
+t05,12146430634,0,codex-ai-test,ai,Praises heart-rate tracking without a failure.
+t05,12259393096,0,codex-ai-test,ai,Praises the heart-rate feature without a failure.
+t05,13080520077,2,codex-ai-test,ai,Heart-rate charts cannot be examined because the app returns to the overview.
+t05,13245925360,0,codex-ai-test,ai,Heart-rate values are present; the missing measurement is active calories.
+t05,13350592672,1,codex-ai-test,ai,"Watch stops recording heart rate, without explicit app display failure."
+t05,13492444664,1,codex-ai-test,ai,Heart-rate visuals disagree rather than being absent or unable to load.
+t05,14369203903,2,codex-ai-test,ai,Exercise heart-rate zones cannot be viewed without a subscription.
+t05,14432650235,1,codex-ai-test,ai,Heart-rate broadcasting restarts the watch rather than failing to load app graphs.
+t05,4128148084,2,codex-ai-test,ai,Heart-rate graph shows only midnight to midday and omits later readings.
+t05,4373952801,0,codex-ai-test,ai,Praises heart-rate tracking without a failure.
+t05,5471832344,0,codex-ai-test,ai,Heart-rate tracking works; the only complaint is weather.
+t05,5537464053,1,codex-ai-test,ai,Hardware heart-rate readings are inaccurate; missing app graphs are not specified.
+t05,5614091453,0,codex-ai-test,ai,Praises detailed heart-rate data without a failure.
+t06,11387940606,1,codex-ai-test,ai,Requests phone-only step counting; a step-sync mismatch is not explicit.
+t06,11728059510,2,codex-ai-test,ai,Weekly and monthly step summaries fail to update in real time.
+t06,12031980674,2,codex-ai-test,ai,Historical step totals show zero despite recorded steps.
+t06,13206825512,0,codex-ai-test,ai,Requests calendar filter changes rather than correct or refreshing step totals.
+t06,13625278708,2,codex-ai-test,ai,Step counts fail to update automatically until the app is opened.
+t06,13686879813,1,codex-ai-test,ai,Update messed up steps but the specific count or refresh problem is unspecified.
+t06,13697607963,1,codex-ai-test,ai,Watch sync fails generally without identifying step counts.
+t06,13703558188,1,codex-ai-test,ai,Watch communication fails generally without identifying step counts.
+t06,13708654301,2,codex-ai-test,ai,Steps appear while connected then disappear after restarting the app.
+t06,13720851327,2,codex-ai-test,ai,Connection failure causes lost steps and rewards data.
+t06,13724505627,1,codex-ai-test,ai,Fenix connection fails after updates but step counts are not mentioned.
+t06,14210630318,0,codex-ai-test,ai,Edge cycling device cannot reconnect; no step-count issue is reported.
+t06,5349418743,2,codex-ai-test,ai,Vivomove step counts do not appear in the app.
+t06,6237534206,0,codex-ai-test,ai,App does not start; no step-count problem is specified.
+t06,6240474750,0,codex-ai-test,ai,"Generic statement that everything stopped working, without a step issue."
+t07,11588333213,2,codex-ai-test,ai,Title explicitly says the app is slow to load.
+t07,12056016498,1,codex-ai-test,ai,"Activity upload is slow, rather than app launch or page loading."
+t07,12516832524,0,codex-ai-test,ai,"Slow HRV is a health measurement, not app performance."
+t07,1312479507,2,codex-ai-test,ai,App gets stuck on its loading icon and regularly fails to open.
+t07,13129875180,2,codex-ai-test,ai,Slow app sync spins endlessly and requires rebooting before data appears.
+t07,13460286203,2,codex-ai-test,ai,Calendar remains on a loading screen indefinitely.
+t07,13465458762,1,codex-ai-test,ai,App is described as very slow without specifying loading or data display.
+t07,13830768939,2,codex-ai-test,ai,Explicitly says the app is slow to load and perform actions.
+t07,13889686207,1,codex-ai-test,ai,General app slowness is mentioned but the specific failure is course transfer.
+t07,14055563630,2,codex-ai-test,ai,"Every screen requires a loading animation, delaying navigation."
+t07,14123586418,1,codex-ai-test,ai,Activities fail to appear rather than an explicitly slow load.
+t07,14319754459,0,codex-ai-test,ai,Slow editing occurs on the watch rather than app loading.
+t07,14450202437,2,codex-ai-test,ai,Opening the app summary takes ages to load.
+t07,14476518583,2,codex-ai-test,ai,Activities load slowly and repeatedly require app restarts.
+t07,14527550900,2,codex-ai-test,ai,Explicit slow loading of activities and daily stats.
+t07,3275797503,2,codex-ai-test,ai,App sync and general operation are very slow.
+t07,4958420251,1,codex-ai-test,ai,Watch faces are stuck loading during transfer rather than ordinary app pages.
+t08,11196679654,0,codex-ai-test,ai,"Dislikes home-screen readability and design, not responsiveness."
+t08,11198094579,0,codex-ai-test,ai,"Objects to redesigned information layout, not freezing."
+t08,11201811156,0,codex-ai-test,ai,"Objects to the visual redesign, not freezing."
+t08,11206238867,0,codex-ai-test,ai,Calls the redesigned screen useless without describing it as stuck or unresponsive.
+t08,11211883947,0,codex-ai-test,ai,"Information requires more navigation, not a frozen screen."
+t08,11215600645,0,codex-ai-test,ai,Says the new layout does not work without an unresponsive-screen symptom.
+t08,11217399099,0,codex-ai-test,ai,Objects to icons and layout choices rather than freezing.
+t08,11224857365,2,codex-ai-test,ai,Home-screen data remains blank and flashing without updating.
+t08,11281585866,0,codex-ai-test,ai,"Positive watch review and screen-strength comment, without app freezing."
+t08,11339967770,1,codex-ai-test,ai,Data fails to update after syncing but frozen screen interaction is not explicit.
+t08,11475365726,0,codex-ai-test,ai,Objects to screen space allocation rather than freezing.
+t08,11558960867,2,codex-ai-test,ai,Title reports app freezes and selecting weight triggers a failure.
+t08,11639019216,2,codex-ai-test,ai,App repeatedly freezes when health data is opened.
+t08,12297323612,0,codex-ai-test,ai,Objects to home-screen redesign rather than responsiveness.
+t08,13692348515,2,codex-ai-test,ai,Performance Stats page is explicitly frozen.
+t08,13695708361,2,codex-ai-test,ai,App explicitly freezes during use.
+t08,13697375206,2,codex-ai-test,ai,Opening training status freezes the app.
+t08,13699364430,2,codex-ai-test,ai,Opening the VO2 max screen freezes the app.
+t08,13700853773,2,codex-ai-test,ai,Selecting fitness age locks or freezes the app.
+t08,13703141301,0,codex-ai-test,ai,Requests a home-screen widget without a freezing problem.
+t08,14424584669,2,codex-ai-test,ai,Buttons register taps but the settings page remains frozen.
+t08,14451399656,2,codex-ai-test,ai,App freezes while connected to watches.
+t08,1696078215,2,codex-ai-test,ai,App freezes on opening or immediately afterwards.
+t08,6349251095,1,codex-ai-test,ai,Blank screen and prior crash are reported without explicit stuck interaction.
+t08,9663345272,2,codex-ai-test,ai,Recurring black screen requires deleting and reinstalling the app.
+t08,9735055067,1,codex-ai-test,ai,Recurring blank phone screen is reported without explicit unresponsiveness.
+t09,11748147098,1,codex-ai-test,ai,Watch will not reconnect after an update; no reinstall or repeated pairing is described.
+t09,11760570603,1,codex-ai-test,ai,Watch reset and generic troubleshooting fail; app reinstall is not specified.
+t09,12131442930,1,codex-ai-test,ai,Reinstalling and resetting were attempted but did not restore the connection.
+t09,13352287901,1,codex-ai-test,ai,"Reconnection uses the Garmin Golf app, not reinstalling or repeated pairing."
+t09,13691813790,1,codex-ai-test,ai,Post-update reconnection fails despite unspecified troubleshooting.
+t09,13692407628,1,codex-ai-test,ai,App reinstall was attempted but the watch still cannot reconnect.
+t09,13692516730,1,codex-ai-test,ai,Fenix cannot reconnect despite unspecified instructions; reinstall is not explicit.
+t09,13693243476,1,codex-ai-test,ai,QR code restores the watch connection rather than reinstalling or repeated pairing.
+t09,13693544285,1,codex-ai-test,ai,One reconnect attempt fails; repeated pairing or app reinstall is not described.
+t09,13693971641,2,codex-ai-test,ai,Deleting and reinstalling apps plus resetting the watch allowed pairing again.
+t09,13696663703,1,codex-ai-test,ai,"Reinstall fails to restore health stats, without an explicit watch reconnection result."
+t09,13707534031,1,codex-ai-test,ai,Reinstall was attempted for a 935 malfunction but still failed.
+t09,13717514196,1,codex-ai-test,ai,"Reinstallation is a proposed next step, not an established restoration method."
+t09,14468648305,1,codex-ai-test,ai,Recurring disconnections are reported without the specified restoration steps.
+t09,14557309913,1,codex-ai-test,ai,Watch will not reconnect after an update; no specified workaround is described.
+t09,14578955069,2,codex-ai-test,ai,Watch must be removed and reconnected every time the app is opened.
+t10,11588333213,2,codex-ai-test,ai,Explicitly reports Fenix 6 sync trouble after the app redesign.
+t10,11921830890,1,codex-ai-test,ai,Watch sync fails but the watch model is unspecified.
+t10,12003056524,2,codex-ai-test,ai,Fenix data no longer syncs to the app.
+t10,12355988702,2,codex-ai-test,ai,"Fenix 6 rarely connects to the app, preventing health monitoring."
+t10,1241601315,1,codex-ai-test,ai,Workout-to-Health app sync fails without identifying a Fenix.
+t10,12604557063,1,codex-ai-test,ai,Watch activities fail to appear after sync but the model is unspecified.
+t10,13245925360,1,codex-ai-test,ai,Sync problem concerns an HRM sensor rather than a Fenix.
+t10,13690853994,2,codex-ai-test,ai,Fenix 7S will not sync with an iPhone.
+t10,13724634743,2,codex-ai-test,ai,Fenix 6X cannot sync through the app and requires direct Wi-Fi transfer.
+t10,13863668098,2,codex-ai-test,ai,Fenix 8 time sync is blocked by app authentication failure.
+t10,13872822298,2,codex-ai-test,ai,Fenix user explicitly reports activities failing to sync and missing app data.
+t10,13892914117,2,codex-ai-test,ai,Fenix needs repeated pairing for sync and now cannot sync at all.
+t10,13942996818,2,codex-ai-test,ai,Fenix 6 Pro Bluetooth and sync are explicitly unreliable.
+t10,13997440444,2,codex-ai-test,ai,Fenix 6 fails to sync every morning and requires resets.
+t10,14228093701,1,codex-ai-test,ai,Sync failure concerns a 745 rather than a Fenix.
+t10,14457185098,2,codex-ai-test,ai,Fenix fails to sync to the app despite phone notifications working.
+t10,14545148395,2,codex-ai-test,ai,Fenix 8 connects to the phone but cannot connect to Garmin Connect.
+t10,1595764034,1,codex-ai-test,ai,Sync failure concerns a Vivoactive HR rather than a Fenix.
+t10,3305808485,1,codex-ai-test,ai,"Intermittent sync concerns unspecified devices, not an identified Fenix."
+t10,4241457913,1,codex-ai-test,ai,An activity is lost during sync but the device model is unspecified.
+t10,4958420251,2,codex-ai-test,ai,Fenix 5 Plus has inconsistent app sync and watch-face transfer failures.
+t10,6669207357,1,codex-ai-test,ai,Apple Health sync is faulty without identifying a Fenix.
+t10,6991275188,1,codex-ai-test,ai,Apple Fitness receives duplicate workouts without identifying a Fenix.
+t10,8127224919,1,codex-ai-test,ai,Watch requires manual sync but its model is unspecified.
+t11,11222724543,1,codex-ai-test,ai,Forerunner 965 upload fails but pairing failure is not explicit.
+t11,11249087598,0,codex-ai-test,ai,Positive Forerunner review without a connection problem.
+t11,11588333213,1,codex-ai-test,ai,Sync trouble concerns a Fenix rather than Forerunner pairing.
+t11,11838278767,0,codex-ai-test,ai,Praises the Forerunner without a pairing problem.
+t11,11912319615,1,codex-ai-test,ai,App connection failure concerns a Descent watch rather than a Forerunner.
+t11,13690728095,1,codex-ai-test,ai,Broken pairing concerns an Edge 530 rather than a Forerunner.
+t11,13697188967,1,codex-ai-test,ai,Update unpairs an unidentified watch; Forerunner model is unspecified.
+t11,13699873711,1,codex-ai-test,ai,Pairing fails but the device model is unspecified.
+t11,13755062439,1,codex-ai-test,ai,Pairing is difficult but the device model is unspecified.
+t11,14167628262,1,codex-ai-test,ai,Pairing is unreliable but the device model is unspecified.
+t11,14175722093,1,codex-ai-test,ai,Connection drops require re-pairing but the device model is unspecified.
+t11,14228093701,2,codex-ai-test,ai,The 745 watch repeatedly fails to connect with Garmin Connect.
+t11,14358237973,1,codex-ai-test,ai,Pairing fails for a Lily 2 rather than a Forerunner.
+t11,14508783540,0,codex-ai-test,ai,Positive Forerunner 55 review without a pairing problem.
+t11,14568828519,2,codex-ai-test,ai,Forerunner 255 Music cannot connect despite trying multiple phones.
+t11,5441408968,1,codex-ai-test,ai,Watch loses pairing after phone restarts but the model is unspecified.
+t12,11760570603,1,codex-ai-test,ai,"iPhone connection fails after resetting the watch, not an identified update."
+t12,1286352787,1,codex-ai-test,ai,Update breaks the iPhone app but a device-connection failure is not explicit.
+t12,1287339441,1,codex-ai-test,ai,Update causes sync and network errors but iPhone is not identified.
+t12,13071136832,1,codex-ai-test,ai,iPhone LiveTrack fails after an update without explicit device-link failure.
+t12,13686322926,2,codex-ai-test,ai,Updated app no longer syncs a watch and the review identifies iPhone use.
+t12,13691813790,1,codex-ai-test,ai,Update breaks app-to-watch connection but iPhone is not identified.
+t12,13692561846,1,codex-ai-test,ai,Update causes Fenix reconnection warnings but iPhone is not identified.
+t12,13696760711,2,codex-ai-test,ai,Title explicitly reports an update breaking iOS device connections.
+t12,13696798194,1,codex-ai-test,ai,Update disconnects the watch but iPhone is not identified.
+t12,13699663895,1,codex-ai-test,ai,Fenix cannot connect to the iPhone app but an update is not explicit.
+t12,13701069436,2,codex-ai-test,ai,iPhone app update is followed by Forerunner connection and data-refresh failures.
+t12,13702635245,1,codex-ai-test,ai,Update breaks watch-to-phone connection but iPhone is not identified.
+t12,13736177327,1,codex-ai-test,ai,Watch connection is lost after an update but iPhone is not identified.
+t12,13737926740,0,codex-ai-test,ai,Update breaks the Strava service link rather than iPhone-to-device connection.
+t12,14213585759,1,codex-ai-test,ai,iPhone connection is unreliable but an update is not mentioned.
+t12,14471020179,2,codex-ai-test,ai,iPhone and tactix lose connection after every app update.
+t12,14513488585,1,codex-ai-test,ai,iPhone-to-Edge app sync fails but an update is not specified.
+t12,8761492889,2,codex-ai-test,ai,iPhone loses the watch Bluetooth link after the latest update.
+t13,12562983312,1,codex-ai-test,ai,Coach workout rescheduling fails rather than sending a workout to the watch.
+t13,12798135975,0,codex-ai-test,ai,"Praises workout tracking and discusses badge pricing, not workout transfer."
+t13,12815932593,0,codex-ai-test,ai,Requests in-app workout execution instead of sending to devices; transfer failure is not reported.
+t13,13219571217,1,codex-ai-test,ai,"Apple Maps directions cannot be sent to an Edge, not a planned watch workout."
+t13,13675943381,0,codex-ai-test,ai,Adding a watch to an account fails without a workout-transfer complaint.
+t13,13734972068,1,codex-ai-test,ai,"A completed workout fails to sync from watch to app, the reverse direction."
+t13,13846722898,1,codex-ai-test,ai,Workout creation or editing fails rather than transfer to the watch.
+t13,13893156999,1,codex-ai-test,ai,"Strength Coach workouts are unavailable for a device model, not failing in transfer."
+t13,14166903888,1,codex-ai-test,ai,Workout creation crashes; the review explicitly says sending workouts is supported.
+t13,14419582224,0,codex-ai-test,ai,Apple Health data transfer is not planned workout transfer to a watch.
+t13,14471965972,0,codex-ai-test,ai,Alerts fail during workout execution rather than during transfer.
+t13,14489624303,0,codex-ai-test,ai,Requests music and playlist management rather than workout transfer.
+t13,14575400039,0,codex-ai-test,ai,Workout pace warnings use an unwanted metric; no transfer failure is reported.
+t13,4670524438,1,codex-ai-test,ai,Workout syncing broke but transfer direction and target are unspecified.
+t13,6305496139,0,codex-ai-test,ai,Notification selection is unrelated to planned workout transfer.
+t14,10030850902,0,codex-ai-test,ai,Positive training and feature-use advice without a calendar failure.
+t14,10607552541,0,codex-ai-test,ai,Historical step data is missing rather than planned workouts.
+t14,10765470310,0,codex-ai-test,ai,Praises training and sleep features without a calendar failure.
+t14,11129459796,0,codex-ai-test,ai,General wish for training-plan implementation without a calendar error.
+t14,11289423816,1,codex-ai-test,ai,Requests guidance for upcoming training days without a specific calendar failure.
+t14,11559519990,0,codex-ai-test,ai,Praises calendar integration and exercise reminders.
+t14,11838278767,0,codex-ai-test,ai,Praises the watch without a calendar or plan problem.
+t14,11860585472,1,codex-ai-test,ai,"Wrong iPhone calendar days appear on the watch, not training plans in the app calendar."
+t14,1294148110,1,codex-ai-test,ai,Calendar crashes and past cycling activities disappear; planned workouts are not specified.
+t14,13206825512,1,codex-ai-test,ai,"Calendar display categories are unhelpful, not missing scheduled workouts."
+t14,13266897512,1,codex-ai-test,ai,"Requests challenge export to phone calendar, not missing app training plans."
+t14,13460286203,1,codex-ai-test,ai,"App calendar never loads, without identifying training plans or scheduled workouts."
+t14,13697662136,0,codex-ai-test,ai,Watch connection fails without a calendar or training-plan symptom.
+t14,13734972068,1,codex-ai-test,ai,Completed workouts fail to sync to the app rather than scheduled workouts in calendar.
+t14,13957415904,0,codex-ai-test,ai,Menstrual-cycle calendar mismatch is not a training-plan calendar problem.
+t14,14334511815,1,codex-ai-test,ai,Scheduled workouts are missing from the home screen but explicitly remain in the calendar.
+t14,14360244442,1,codex-ai-test,ai,Exercise choices are missing from workout editing rather than a training calendar.
+t14,14498007578,2,codex-ai-test,ai,Training calendars and coach options become unavailable and workout calendar sync no longer works.
+t15,10655390203,0,codex-ai-test,ai,Positive golf and fitness review without route-transfer failure.
+t15,11894956392,1,codex-ai-test,ai,Watch data is absent from the app but routes or courses are not specified.
+t15,12046825326,0,codex-ai-test,ai,Route is used figuratively in positive training-coach feedback.
+t15,12184759300,0,codex-ai-test,ai,Dislikes layout and sync reminders without a route-transfer problem.
+t15,12188993520,1,codex-ai-test,ai,Course editing corrupts waypoints rather than failing transfer.
+t15,12198866636,2,codex-ai-test,ai,Course sync to a 955 Solar fails without Wi-Fi.
+t15,12957043536,0,codex-ai-test,ai,Praises route planning without a transfer failure.
+t15,13703785608,1,codex-ai-test,ai,Finding routes in the map is difficult rather than transferring them.
+t15,13722757388,1,codex-ai-test,ai,Waypoint editing is difficult rather than transferring a course.
+t15,13949886468,0,codex-ai-test,ai,Requests more walking expeditions without a route-transfer failure.
+t15,14389048218,1,codex-ai-test,ai,Recorded activity transfer fails rather than a route or course transfer.
+t15,14565523612,0,codex-ai-test,ai,"Elevation correction of a recorded route is wrong, not a transfer failure."
+t15,8050658802,0,codex-ai-test,ai,"Praises seamless device sync and refers to a golf course, not route transfer."
+t16,10894842343,0,codex-ai-test,ai,Reviewer explicitly says the claimed update fixes did not work.
+t16,13339396918,0,codex-ai-test,ai,Billing and subscription cancellation are not device-link recovery.
+t16,13691813790,0,codex-ai-test,ai,Support says fixed but the reviewer still cannot reconnect.
+t16,13694776203,0,codex-ai-test,ai,Connection fails after the update and the reviewer asks for a fix.
+t16,13696444021,0,codex-ai-test,ai,Explicitly says the problem is still not fixed.
+t16,13700724991,0,codex-ai-test,ai,Bluetooth remains broken and the reviewer hopes for a future fix.
+t16,13701991143,0,codex-ai-test,ai,Repeated attempts still fail to restore watch connectivity.
+t16,13704227804,0,codex-ai-test,ai,Update breaks connection and leaves zero connectivity.
+t16,13724505627,0,codex-ai-test,ai,Reviewer explicitly says the claimed connection fix did not work.
+t16,13724634743,0,codex-ai-test,ai,Supposed update fixes still leave the Fenix unable to sync.
+t16,13726451345,0,codex-ai-test,ai,Update fixes strength-session editing rather than connection or sync.
+t16,13733673466,1,codex-ai-test,ai,"Reports an update fixed something, but does not identify connection or sync as the issue."
+t16,13755062439,0,codex-ai-test,ai,Pairing is difficult without any successful update fix.
+t16,14171983785,0,codex-ai-test,ai,Watch connectivity gets worse with updates rather than recovering.
+t16,14261506118,0,codex-ai-test,ai,Badge-title display bug remains unfixed; unrelated to connection recovery.
+t16,14274579690,0,codex-ai-test,ai,Reviewer promises a future rating change if Bluetooth is fixed; no fix is reported.
+t16,14393467648,0,codex-ai-test,ai,Battery drain was fixed rather than connection or sync.
+t16,2841406380,0,codex-ai-test,ai,"Reports connectivity issues after an update, not restored connectivity."

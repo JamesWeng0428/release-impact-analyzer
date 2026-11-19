@@ -1,17 +1,22 @@
-# Garmin Firmware Release Impact Analyzer
+# Garmin Connect App Release Impact Analyzer
 
 CS410 (Fall 2026) final project by James Weng (zweng7).
 
-Garmin users with sync and Bluetooth problems have to dig through forum threads,
-support FAQs and firmware changelogs to find out whether their issue is a known
-bug and whether a later release fixed it. This project:
+Garmin users with sync and Bluetooth problems have to dig through reviews and
+support discussions to find similar reports and see whether complaints changed
+after an app update. This project:
 
 1. **Searches** user reports (App Store reviews; forum posts later) with a C++
    retrieval engine (inverted index + BM25),
-   using a symptom or a changelog entry as the query.
-2. **Mines** complaints with topic modeling and tracks each issue across
-   firmware releases, to spot which release introduced a problem and whether a
-   "fixed" item actually reduced complaints.
+   using a symptom as the query, while keeping each review's ID, app version,
+   country, rating and date.
+2. **Tracks** keyword-labeled connectivity complaints across Garmin Connect
+   app versions, flags changes, and checks later releases for evidence of
+   recovery. These are review trends, not proof of a device-firmware bug or fix.
+3. **Evaluates** keyword overlap, BM25 and BM25 with fixed query expansion on
+   frozen query-review pools. AI relevance labels cover all development and test
+   pairs; independent human validation is still pending. Topic modeling is
+   future work.
 
 ## Layout
 
@@ -24,6 +29,8 @@ examples/      small made-up corpus for demos
 python/        pybind11 bindings, used by the evaluation scripts
 crawler/       data collection (Python, standard library only)
 analysis/      per-release analysis of the collected data
+retrieval/     metadata-preserving search through the C++ Python bindings
+evaluation/    queries, blind annotation pools and ranking metrics
 ```
 
 ## Build and test
@@ -45,10 +52,72 @@ Search a corpus (one document per line); each line typed on stdin is a query:
 Build the Python module (in its own build directory, without sanitizers):
 
 ```bash
-cmake -S . -B build-py -G Ninja -DCMAKE_BUILD_TYPE=Release -DRIA_BUILD_TESTS=OFF -DRIA_BUILD_PYTHON=ON -DPython_EXECUTABLE="$(which python3)"
+python3 -m pip install -r requirements-dev.txt
+cmake -S . -B build-py -G Ninja -DCMAKE_BUILD_TYPE=Release -DRIA_BUILD_TESTS=OFF -DRIA_BUILD_PYTHON=ON -DPython_EXECUTABLE="$(which python3)" -Dpybind11_DIR="$(python3 -m pybind11 --cmakedir)"
 cmake --build build-py
 PYTHONPATH=build-py python3 -c "import ria; print(ria.tokenize('Edge 1050 sync failed after 31.20'))"
 ```
+
+`requirements-dev.txt` provides the Python test tools and pybind11. If pybind11
+is already installed through a system package manager, its CMake directory can
+be supplied instead. Use the same Python interpreter to configure, test and
+run the bindings.
+
+## Search and retrieval evaluation
+
+Run these commands from the project root after building `build-py`:
+
+```bash
+PYTHONPATH=build-py python3 -m retrieval.search "bluetooth disconnect" --top-k 5
+PYTHONPATH=build-py python3 -m retrieval.search "sync" --version 5.21.1 --system bm25_expanded --json
+PYTHONPATH=build-py python3 -m pytest -q crawler analysis retrieval evaluation
+```
+
+Search returns the original review text and metadata. The `--version` filter
+means **app version**, not device firmware. BM25 scores use the entire collection
+even when results are filtered. Search results do not change the denominator
+used by the release timeline or regression analysis.
+
+Freeze the local corpus and prepare the real relevance annotation task:
+
+```bash
+PYTHONPATH=build-py python3 -m evaluation.retrieval prepare
+# Fill relevance (0/1/2), assessor and provenance in:
+# evaluation/workspace/judgments.csv
+python3 -m evaluation.retrieval score --split dev --report evaluation/workspace/dev-report.json
+python3 -m evaluation.retrieval score --split test --report evaluation/workspace/test-report.json
+```
+
+The query set has 8 development and 16 test queries. Preparation pools the top
+10 results from each of three methods and hides ranks and system names in the
+annotation sheet. Scoring requires all pooled pairs for the selected split to
+be judged; blank labels are not treated as irrelevant. The separate human
+annotation sheet remains blank. AI judgments with rationales are available for
+all 433 pooled pairs, with development, test and combined reports:
+
+```bash
+python3 -m evaluation.retrieval score --judgments evaluation/relevance_ai_dev.csv --split dev
+python3 -m evaluation.retrieval score --judgments evaluation/relevance_ai_test.csv --split test
+python3 -m evaluation.retrieval score --judgments evaluation/relevance_ai_all.csv --split all
+```
+
+The 16-query AI-labeled test comparison gives NDCG@10 of 0.5869 (keyword),
+0.6535 (BM25) and 0.6821 (BM25 + expansion). These are AI judgments, not
+independent human ground truth. `evaluation/ai_annotation_manifest.json`
+records the source, rubric, coverage and data/code hashes. The combined result
+includes development queries and should not be described as held-out performance.
+
+An entirely synthetic example runs offline without annotating real reviews:
+
+```bash
+PYTHONPATH=build-py python3 -m evaluation.retrieval prepare --reviews examples/retrieval_reviews.jsonl --queries examples/retrieval_queries.jsonl --out build-py/evaluation-example
+python3 -m evaluation.retrieval score --workspace build-py/evaluation-example --judgments examples/retrieval_judgments.csv --split all --report build-py/example-report.json
+```
+
+Use a fresh output directory for a second preparation; existing annotations are
+never overwritten. The synthetic example checks the pipeline, not effectiveness
+on Garmin reviews. See [evaluation/README.md](evaluation/README.md) for the
+judging rubric, metric definitions and evaluation limitations.
 
 Options (pass as `-DNAME=ON`):
 
@@ -109,16 +178,18 @@ Join the labels to `data/appstore_reviews.jsonl` using its `id` field.
 
 - [x] Tokenizer (keeps firmware versions like `31.20` as one term)
 - [x] Inverted index (postings with term frequencies, document lengths)
-- [ ] Document store (external ids, title, device, date)
+- [x] In-memory review store (external ids, title, app version, country, rating, date)
 - [x] BM25 ranking + top-k retrieval
-- [ ] Stemming / query expansion ("dropout" vs "drops out", "pair" vs "pairing")
+- [x] Fixed query expansion baseline (e.g. "pair" also retrieves "pairing")
+- [ ] Stemming / learned query expansion
 - [ ] Field boosting (device model, firmware version)
 - [x] App Store review fetcher (Garmin Connect, versioned reviews)
 - [ ] Garmin forum posts (on hold: Terms of Use)
 - [x] Release timeline (official dates + first-review estimates, keyword baseline for connectivity complaints)
 - [x] Regression detection: Wilson intervals, one-sided Fisher exact tests against the previous versions, Benjamini-Hochberg FDR control
 - [x] Fix verification (later releases vs regression and frozen pre-regression baseline, with uncertainty bounds)
-- [ ] Relevance labels + evaluation (NDCG@10 vs keyword baseline)
+- [x] Relevance evaluation pipeline (NDCG@10, P@5; keyword vs BM25 vs expansion)
+- [ ] Human relevance judgments + final held-out comparison
 - [ ] Topic modeling + per-release issue trends
 - [ ] CI regression gates on quality, latency and memory
 

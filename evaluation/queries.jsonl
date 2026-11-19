@@ -1,0 +1,24 @@
+{"id":"d01","split":"dev","text":"watch will not sync","information_need":"Reports that a Garmin watch cannot transfer or synchronize data with the app; successful sync alone is not relevant."}
+{"id":"d02","split":"dev","text":"pair watch after update","information_need":"Pairing or discovering a watch fails or requires repeated attempts after an app update."}
+{"id":"d03","split":"dev","text":"battery drain phone","information_need":"The Garmin Connect app consumes excessive phone battery; watch battery complaints without an app connection are only partly relevant."}
+{"id":"d04","split":"dev","text":"app crash startup","information_need":"The app crashes or closes when launched, rather than during an unrelated operation."}
+{"id":"d05","split":"dev","text":"missing notifications watch","information_need":"Phone messages or alerts do not reach the watch through the app."}
+{"id":"d06","split":"dev","text":"subscription paid features","information_need":"Complaints about a subscription or paywall for Garmin Connect features."}
+{"id":"d07","split":"dev","text":"new layout difficult","information_need":"The redesigned app interface makes navigation or finding information harder."}
+{"id":"d08","split":"dev","text":"login password account","information_need":"Problems signing in to an existing account or resetting a password."}
+{"id":"t01","split":"test","text":"bluetooth disconnect","information_need":"The Bluetooth connection between a Garmin device and phone repeatedly drops or fails to stay connected."}
+{"id":"t02","split":"test","text":"activity missing after sync","information_need":"A recorded activity is absent from Garmin Connect even after a sync attempt."}
+{"id":"t03","split":"test","text":"strava upload failed","information_need":"Activities fail to transfer from Garmin Connect to Strava; generic sync issues without Strava are only partly relevant."}
+{"id":"t04","split":"test","text":"sleep data incorrect","information_need":"Sleep duration, sleep stages or sleep times are missing or inaccurate in Garmin Connect."}
+{"id":"t05","split":"test","text":"heart rate missing","information_need":"Heart-rate data or graphs are absent or fail to load in the app."}
+{"id":"t06","split":"test","text":"steps not updating","information_need":"Step counts do not refresh, sync correctly or agree between the device and app."}
+{"id":"t07","split":"test","text":"app slow loading","information_need":"The app is slow to launch, load pages or show data; crashes alone are only partly relevant."}
+{"id":"t08","split":"test","text":"freeze screen","information_need":"An app screen becomes stuck or unresponsive, rather than merely having a disliked design."}
+{"id":"t09","split":"test","text":"watch reconnect reinstall","information_need":"Restoring a watch connection requires reinstalling the app or repeated unpairing and pairing."}
+{"id":"t10","split":"test","text":"fenix sync problem","information_need":"A Fenix device has a reported app sync failure; another device's sync issue is only partly relevant."}
+{"id":"t11","split":"test","text":"forerunner pairing problem","information_need":"A Forerunner device cannot pair or remain paired with Garmin Connect."}
+{"id":"t12","split":"test","text":"iphone connection update","information_need":"A reviewer reports an iPhone-to-Garmin connection failure following an update."}
+{"id":"t13","split":"test","text":"workout send watch","information_need":"A planned workout cannot be sent from Garmin Connect to the watch."}
+{"id":"t14","split":"test","text":"training calendar missing","information_need":"Training plans or scheduled workouts are absent from or incorrect in the app calendar."}
+{"id":"t15","split":"test","text":"route course transfer","information_need":"A route or course cannot be transferred between the app and a Garmin device."}
+{"id":"t16","split":"test","text":"connectivity fixed update","information_need":"A reviewer explicitly reports that an update restored a previously failing connection or sync; hopes or claims that it is still broken are not directly relevant."}

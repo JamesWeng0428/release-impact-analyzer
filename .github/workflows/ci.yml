@@ -43,6 +43,23 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install test tools
-        run: pip install pytest
-      - name: Test crawler and analysis (no network)
-        run: python -m pytest -q crawler analysis
+        run: pip install -r requirements-dev.txt
+      - name: Build native search bindings
+        run: >
+          cmake -S . -B build-py
+          -DCMAKE_BUILD_TYPE=Release
+          -DRIA_BUILD_TESTS=OFF -DRIA_BUILD_PYTHON=ON
+          -DPython_EXECUTABLE="$(which python)"
+          -Dpybind11_DIR="$(python -m pybind11 --cmakedir)"
+      - name: Compile search bindings
+        run: cmake --build build-py
+      - name: Test crawler, analysis, search and evaluation (no network)
+        env:
+          PYTHONPATH: build-py
+        run: python -m pytest -q crawler analysis retrieval evaluation
+      - name: Exercise offline evaluation CLI
+        env:
+          PYTHONPATH: build-py
+        run: |
+          python -m evaluation.retrieval prepare --reviews examples/retrieval_reviews.jsonl --queries examples/retrieval_queries.jsonl --out build-py/evaluation-example
+          python -m evaluation.retrieval score --workspace build-py/evaluation-example --judgments examples/retrieval_judgments.csv --split all --report build-py/example-report.json

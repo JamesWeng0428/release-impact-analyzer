@@ -1,0 +1,579 @@
+{
+  "split": "all",
+  "query_count": 24,
+  "judgment_provenance": {
+    "ai": 433
+  },
+  "metric_definitions": {
+    "ndcg@10": "gain=2^grade-1; log2(rank+1); pooled IDCG",
+    "precision@5": "grade>0; fixed denominator 5"
+  },
+  "snapshot": {
+    "schema_version": 1,
+    "pool_depth": 10,
+    "systems": [
+      "keyword",
+      "bm25",
+      "bm25_expanded"
+    ],
+    "reviews": 1435,
+    "queries": 24,
+    "pooled_pairs": 433,
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75
+    },
+    "expansions": {
+      "sync": [
+        "syncs",
+        "syncing",
+        "synced",
+        "synchronization",
+        "synchronisation"
+      ],
+      "pair": [
+        "pairing",
+        "paired",
+        "unpaired"
+      ],
+      "disconnect": [
+        "disconnects",
+        "disconnected",
+        "disconnecting",
+        "dropout"
+      ],
+      "crash": [
+        "crashes",
+        "crashing",
+        "crashed"
+      ],
+      "freeze": [
+        "freezes",
+        "freezing",
+        "frozen"
+      ],
+      "notification": [
+        "notifications",
+        "alerts"
+      ],
+      "battery": [
+        "drain",
+        "draining"
+      ],
+      "login": [
+        "signin",
+        "sign",
+        "log"
+      ]
+    },
+    "keyword": "count of distinct query terms present; OR matching",
+    "tie_break": "ascending review ID (lexicographic)",
+    "hashes": {
+      "corpus.jsonl": "838338c5c858901b09398f13636e8ad29bd64990c90a3cec100d1c2388d8a01e",
+      "queries.jsonl": "a21eff98ab2c2a876457ff55c78d4508d04e576357d6279097058b684e7c0d42",
+      "runs.jsonl": "994c0efed6506033dc1108698e475613109a11c071f6ae6218af346c92e954c4",
+      "pool.csv": "2f7836bd5a86e0c7a197cd88ec2c8f41e340e97ca02a0cf66326541b3ac8dc9e"
+    }
+  },
+  "judgments_sha256": "320a4f19ebafac0cf31c5186d67f9839bc40576ffeee3509466b3d3b71ef3351",
+  "warnings": [
+    "AI judgments are a pilot, not independent human ground truth.",
+    "Metrics are relative to this judged pool, not exhaustive corpus relevance."
+  ],
+  "per_query": [
+    {
+      "query_id": "d01",
+      "text": "watch will not sync",
+      "judged_documents": 25,
+      "relevant_documents": 24,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.8726924496217513,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.7144097119277253,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.762815192207169,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d02",
+      "text": "pair watch after update",
+      "judged_documents": 21,
+      "relevant_documents": 21,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.7123824196739038,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6645037490337173,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5303669587865024,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d03",
+      "text": "battery drain phone",
+      "judged_documents": 15,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.7794345063403657,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.841080835545421,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8816013986152427,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d04",
+      "text": "app crash startup",
+      "judged_documents": 20,
+      "relevant_documents": 11,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.36820442373440243,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.3425487607304357,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8428919178014228,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d05",
+      "text": "missing notifications watch",
+      "judged_documents": 17,
+      "relevant_documents": 11,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.3904681729046889,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.7581103286009375,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.7581103286009375,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d06",
+      "text": "subscription paid features",
+      "judged_documents": 13,
+      "relevant_documents": 13,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.955830517697074,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 1.0,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 1.0,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d07",
+      "text": "new layout difficult",
+      "judged_documents": 13,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.9245051374078057,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6736486765086698,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6736486765086698,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "d08",
+      "text": "login password account",
+      "judged_documents": 17,
+      "relevant_documents": 12,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.3689266586488295,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.6804113709546147,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.811104194880818,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t01",
+      "text": "bluetooth disconnect",
+      "judged_documents": 24,
+      "relevant_documents": 23,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6447482398302881,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6503650037330142,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6870303531693138,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t02",
+      "text": "activity missing after sync",
+      "judged_documents": 24,
+      "relevant_documents": 20,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.5770251023848771,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.7118983194810122,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6651697220069183,
+          "precision@5": 0.8
+        }
+      }
+    },
+    {
+      "query_id": "t03",
+      "text": "strava upload failed",
+      "judged_documents": 13,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6049483223435619,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.5873391803349803,
+          "precision@5": 0.6
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5873391803349803,
+          "precision@5": 0.6
+        }
+      }
+    },
+    {
+      "query_id": "t04",
+      "text": "sleep data incorrect",
+      "judged_documents": 17,
+      "relevant_documents": 13,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6011239406490058,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.7914011229073249,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.7914011229073249,
+          "precision@5": 0.8
+        }
+      }
+    },
+    {
+      "query_id": "t05",
+      "text": "heart rate missing",
+      "judged_documents": 18,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.5390796231783272,
+          "precision@5": 0.6
+        },
+        "bm25": {
+          "ndcg@10": 0.48250949954513517,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.48250949954513517,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t06",
+      "text": "steps not updating",
+      "judged_documents": 15,
+      "relevant_documents": 11,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.8294753892821142,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.5802167751315433,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5802167751315433,
+          "precision@5": 0.8
+        }
+      }
+    },
+    {
+      "query_id": "t07",
+      "text": "app slow loading",
+      "judged_documents": 17,
+      "relevant_documents": 15,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6963303387284213,
+          "precision@5": 0.8
+        },
+        "bm25": {
+          "ndcg@10": 0.8463507934928552,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8463507934928552,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t08",
+      "text": "freeze screen",
+      "judged_documents": 26,
+      "relevant_documents": 15,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.09063815133642783,
+          "precision@5": 0.0
+        },
+        "bm25": {
+          "ndcg@10": 0.4182448604576179,
+          "precision@5": 0.6
+        },
+        "bm25_expanded": {
+          "ndcg@10": 1.0,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t09",
+      "text": "watch reconnect reinstall",
+      "judged_documents": 16,
+      "relevant_documents": 16,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6561709361507524,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.8014910969353671,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.8014910969353671,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t10",
+      "text": "fenix sync problem",
+      "judged_documents": 24,
+      "relevant_documents": 24,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.8909724089198024,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.778550859274018,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6639592803132975,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t11",
+      "text": "forerunner pairing problem",
+      "judged_documents": 16,
+      "relevant_documents": 13,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.7393003808838968,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.6606572476253861,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6606572476253861,
+          "precision@5": 0.8
+        }
+      }
+    },
+    {
+      "query_id": "t12",
+      "text": "iphone connection update",
+      "judged_documents": 18,
+      "relevant_documents": 17,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.9038234630791842,
+          "precision@5": 1.0
+        },
+        "bm25": {
+          "ndcg@10": 0.7875997254776079,
+          "precision@5": 1.0
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.7875997254776079,
+          "precision@5": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "t13",
+      "text": "workout send watch",
+      "judged_documents": 15,
+      "relevant_documents": 7,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.47912593929448855,
+          "precision@5": 0.4
+        },
+        "bm25": {
+          "ndcg@10": 0.6413290400325761,
+          "precision@5": 0.4
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.6413290400325761,
+          "precision@5": 0.4
+        }
+      }
+    },
+    {
+      "query_id": "t14",
+      "text": "training calendar missing",
+      "judged_documents": 18,
+      "relevant_documents": 10,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.5371980658759534,
+          "precision@5": 0.4
+        },
+        "bm25": {
+          "ndcg@10": 0.5697349513746066,
+          "precision@5": 0.8
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5697349513746066,
+          "precision@5": 0.8
+        }
+      }
+    },
+    {
+      "query_id": "t15",
+      "text": "route course transfer",
+      "judged_documents": 13,
+      "relevant_documents": 6,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.6004367193047965,
+          "precision@5": 0.4
+        },
+        "bm25": {
+          "ndcg@10": 0.648082808254425,
+          "precision@5": 0.4
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.648082808254425,
+          "precision@5": 0.4
+        }
+      }
+    },
+    {
+      "query_id": "t16",
+      "text": "connectivity fixed update",
+      "judged_documents": 18,
+      "relevant_documents": 1,
+      "systems": {
+        "keyword": {
+          "ndcg@10": 0.0,
+          "precision@5": 0.0
+        },
+        "bm25": {
+          "ndcg@10": 0.5,
+          "precision@5": 0.2
+        },
+        "bm25_expanded": {
+          "ndcg@10": 0.5,
+          "precision@5": 0.2
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "keyword": {
+      "ndcg@10": 0.6151183878029466,
+      "precision@5": 0.725
+    },
+    "bm25": {
+      "ndcg@10": 0.672103529889958,
+      "precision@5": 0.8250000000000001
+    },
+    "bm25_expanded": {
+      "ndcg@10": 0.7155587610000875,
+      "precision@5": 0.8583333333333334
+    }
+  }
+}
