@@ -159,6 +159,33 @@ latency/memory thresholds are not enforced on shared runners.
 
 ## Prepare a new retrieval experiment
 
+### Label one review at a time
+
+For the existing frozen local workspace, launch the annotation page:
+
+```bash
+python -m evaluation.annotate --open
+```
+
+Open `http://127.0.0.1:8765`. Choose Test (formal labels) or Dev (practice),
+read the information need and full review, and click or press **0 / 1 / 2**.
+Each choice is atomically saved to `evaluation/workspace/judgments.csv` as
+`assessor=james`, `provenance=human`, before advancing. Use `--assessor NAME`
+for another annotator, with a separate workspace copy for independent labels.
+The first save creates `judgments.before-annotation.csv` as a recovery copy.
+
+Refresh or restart the server to resume at the first unjudged pair. Previous/next
+controls let you revise earlier answers; skip leaves the score blank. The UI
+hides AI labels, system names and rankings. A conflicting edit from another tab
+is rejected and asks you to reload. Keep the terminal running while annotating;
+Ctrl+C stops the server without deleting saved progress. The page binds only to
+this computer's loopback interface and requires no extra dependencies.
+
+The workspace itself is local and ignored by Git. On a fresh clone, run the
+`prepare` command below on your corpus before launching the annotation page.
+For disposable UI tests, `--demo --workspace PATH` writes `synthetic` provenance;
+never use that option on your actual human annotation workspace.
+
 Freeze the local corpus and prepare the real relevance annotation task:
 
 ```bash

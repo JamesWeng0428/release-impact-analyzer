@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>检索相关性标注 · CS410</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#163047;background:#edf2f5;font-size:16px;color-scheme:light}
+*{box-sizing:border-box}body{margin:0}button,select{font:inherit}button,select{cursor:pointer}button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b45d14;outline-offset:3px}button:disabled,select:disabled{cursor:wait;opacity:.5}
+.shell{max-width:900px;margin:auto;padding:32px 28px 0}header{display:flex;justify-content:space-between;align-items:center;gap:20px}h1{font-size:23px;margin:4px 0 0;letter-spacing:-.5px}.project{font-size:13px;color:#51677a}.split{border:1px solid #b5c5d0;background:#fff;padding:10px;border-radius:6px;color:inherit}
+.progressline{display:flex;justify-content:space-between;gap:12px;margin:26px 0 10px;font-size:14px}progress{width:100%;height:5px;display:block;appearance:none;border:0;border-radius:3px;overflow:hidden}progress::-webkit-progress-bar{background:#d5e0e7}progress::-webkit-progress-value{background:#1767a5}progress::-moz-progress-bar{background:#1767a5}
+#status{color:#227266}#status.error{color:#a22525}.demo{background:#fff1cf;padding:12px;border-radius:6px;margin-top:18px}.query{padding:24px 0 24px 20px;border-left:4px solid #1767a5;margin:28px 0 22px}.label{color:#51677a;font-size:13px;margin-bottom:8px}h2{font-size:26px;line-height:1.3;margin:0 0 12px;font-weight:650;overflow-wrap:anywhere}#need{font-size:16px;line-height:1.7;max-width:72ch;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.review{background:#fff;padding:28px 32px;border:1px solid #d5e0e7;border-radius:8px;min-height:210px}#title{font-size:21px;margin:12px 0 16px;line-height:1.45;overflow-wrap:anywhere}#text{font-family:Georgia,"Times New Roman",serif;font-size:19px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;max-width:76ch}.review-top{display:flex;justify-content:space-between;color:#51677a;font-size:13px;gap:12px}#currentGrade{color:#1767a5;font-weight:600}
+.actions{position:static;background:#edf2f5;padding:20px 0 16px}.grades{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grade{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid #b5c5d0;border-radius:7px;padding:15px;background:white;color:#163047;min-height:78px}.grade:hover{border-color:#1767a5;background:#f3f8fc}.grade[aria-pressed=true]{border:2px solid #1767a5;background:#e4f0fa;padding:14px}.number{font-size:28px;font-weight:650;color:#1767a5}.grade strong{display:block;font-size:16px}.grade small{display:block;margin-top:5px;color:#51677a;font-size:12px;line-height:1.4}.hint{text-align:center;font-size:12px;color:#51677a;margin:12px 0 0}
+.navigation{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0}.quiet{border:1px solid #b5c5d0;border-radius:5px;padding:9px 13px;background:transparent;color:#163047}.quiet:hover{background:#fff}.position{font-size:13px;color:#51677a}details{font-size:14px;line-height:1.7;color:#51677a;padding:0 0 18px}summary{cursor:pointer}details p{margin:10px 0}#done{padding:48px 0;text-align:center}#done h2{font-size:26px}.hidden{display:none!important}.errorbox{border:1px solid #b45656;background:#fff2f2;padding:14px;border-radius:6px;margin:18px 0;color:#8a2222;font-size:14px;line-height:1.6}#reload{margin-left:12px}footer{font-size:12px;color:#51677a;padding:0 0 22px}
+@media(max-width:600px){.shell{padding:20px 16px 0}header{align-items:flex-start;gap:8px}h1{font-size:20px}.split{padding:8px;font-size:13px}.query{padding-left:14px;margin-top:22px}h2{font-size:23px}.review{padding:20px}#text{font-size:18px}.grades{gap:7px}.grade{padding:12px 8px;gap:7px;flex-direction:column;align-items:flex-start;min-height:110px}.grade[aria-pressed=true]{padding:11px 7px}.grade strong{font-size:14px}.grade small{font-size:11px}.number{font-size:23px}.progressline{font-size:12px}.navigation{flex-wrap:wrap}.position{order:3;width:100%;text-align:center}.actions{padding-top:12px}}
+</style>
+<main class="shell">
+ <header><div><div class="project">CS410 / Garmin Connect</div><h1>检索相关性标注</h1></div><select id="split" class="split" aria-label="选择数据集"><option value="test">Test · 正式标注</option><option value="dev">Dev · 练习标注</option></select></header>
+ <div id="demo" class="demo hidden">演示模式：操作只保存到演示数据，来源记为 synthetic。</div>
+ <div class="progressline"><span id="progressText">正在读取进度…</span><span id="status" role="status" aria-live="polite">连接中</span></div>
+ <progress id="progress" value="0" max="1" aria-label="已完成标注"></progress>
+ <div id="error" class="errorbox hidden" role="alert"><span id="errorText"></span><button id="reload" class="quiet">重新读取</button></div>
+ <div id="work" class="hidden">
+  <section class="query" aria-labelledby="query"><div class="label">搜索需求 · <span id="queryId"></span></div><h2 id="query"></h2><p id="need"></p></section>
+  <article class="review" aria-labelledby="title"><div class="review-top"><span>原始评论</span><span id="currentGrade"></span></div><h3 id="title"></h3><p id="text"></p></article>
+  <nav class="navigation" aria-label="切换评论"><button id="prev" class="quiet">上一条</button><span id="position" class="position"></span><button id="skip" class="quiet">暂不确定，稍后再看</button><button id="next" class="quiet">下一条</button></nav>
+  <details><summary>评分说明</summary><p>先读完整的 information need，再判断这条评论是否满足它。2 = 直接满足；1 = 部分相关、缺少指定细节；0 = 无关或与所需问题相反。不要根据星级猜测，也不要替评论补充未说明的设备或时间。</p><p>例如，需求是“更新后手表无法配对”：明确说更新后配对失败 → 2；只说配对失败，未提更新 → 1；说更新后配对正常 → 0。</p><p>暂不确定时先跳过，保持未标注。可以返回修改自己的评分。正式标注时不查看 AI 答案或系统排名。</p></details>
+ </div>
+ <section id="done" class="hidden"><h2>这一组已全部标注</h2><p>所有选择均已保存。你可以回看修改，或切换另一组。</p><button id="reviewAll" class="quiet">回看这一组</button></section>
+ <div id="actions" class="actions hidden"><div class="grades" role="group" aria-label="选择相关性分数">
+  <button class="grade" data-grade="0" aria-pressed="false"><span class="number">0</span><span><strong>不相关</strong><small>无关，或与需求相反</small></span></button>
+  <button class="grade" data-grade="1" aria-pressed="false"><span class="number">1</span><span><strong>部分相关</strong><small>相关，但缺少关键细节</small></span></button>
+  <button class="grade" data-grade="2" aria-pressed="false"><span class="number">2</span><span><strong>直接相关</strong><small>明确满足搜索需求</small></span></button>
+ </div><p class="hint">点击或按 0 / 1 / 2 · 保存成功后进入下一条 · ← / → 回看</p></div>
+ <footer>标注人：<span id="assessor">—</span>。进度自动保存到本地 judgments.csv；刷新后继续。</footer>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), token='__TOKEN__';
+let state=null, rows=[], index=0, busy=false, failed=false, lastSave=0;
+const labeled=r=>r.relevance!=='';
+const splitKey='ria-annotation-split';
+try{$('split').value=localStorage.getItem(splitKey)||'test';}catch{}
+if(!$('split').value)$('split').value='test';
+function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
+function fail(error){failed=true;$('error').classList.remove('hidden');$('errorText').textContent=error.message;status('未保存 · 请重新读取',true);renderControls();}
+function renderControls(){document.querySelectorAll('.grade').forEach(b=>b.disabled=busy||failed);['prev','next','skip','split','reviewAll'].forEach(id=>$(id).disabled=busy||failed);$('reload').disabled=busy;if(state&&!busy&&!failed){$('prev').disabled=index<=0;$('next').disabled=index>=rows.length-1;}}
+function render(){
+ if(!state)return;
+ const count=rows.filter(labeled).length;
+ $('progressText').textContent=`${$('split').value==='test'?'Test':'Dev'} 已完成 ${count} / ${rows.length} 条`;
+ $('progress').max=rows.length||1;$('progress').value=count;
+ $('assessor').textContent=state.assessor;$('demo').classList.toggle('hidden',!state.demo);
+ const done=index>=rows.length;
+ $('work').classList.toggle('hidden',done);$('actions').classList.toggle('hidden',done);$('done').classList.toggle('hidden',!done);
+ if(!done){const r=rows[index];$('query').textContent=r.query;$('queryId').textContent=r.query_id;$('need').textContent=r.information_need;$('title').textContent=r.title||'（无标题）';$('text').textContent=r.text||'（无正文）';$('currentGrade').textContent=labeled(r)?`已标注 ${r.relevance} 分`:'尚未标注';$('position').textContent=`第 ${index+1} / ${rows.length} 条`;document.querySelectorAll('.grade').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.grade===r.relevance)));}
+ renderControls();
+}
+function chooseSplit(){rows=state.rows.filter(r=>r.split===$('split').value);index=rows.findIndex(r=>!labeled(r));if(index<0)index=rows.length;try{localStorage.setItem(splitKey,$('split').value);}catch{}render();status('已读取本地进度');}
+async function request(path,options){const response=await fetch(path,{cache:'no-store',...options});const body=await response.json();if(!response.ok)throw new Error(body.error||'无法保存，请重新读取后重试。');return body;}
+async function load(){busy=true;renderControls();try{state=await request('/api/state');failed=false;$('error').classList.add('hidden');chooseSplit();status('已读取本地进度');}catch(e){fail(e);}finally{busy=false;renderControls();}}
+function nextUnlabeled(start){for(let offset=1;offset<=rows.length;offset++){const candidate=(start+offset)%rows.length;if(!labeled(rows[candidate]))return candidate;}return rows.length;}
+async function save(grade){
+ if(busy||failed||!state||index>=rows.length||performance.now()-lastSave<350)return;
+ const current=rows[index], oldIndex=index, wasLabeled=labeled(current);
+ busy=true;renderControls();status('正在保存…');
+ try{state=await request('/api/label',{method:'POST',headers:{'Content-Type':'application/json','X-Annotation-Token':token},body:JSON.stringify({revision:state.revision,query_id:current.query_id,review_id:current.review_id,relevance:grade})});rows=state.rows.filter(r=>r.split===$('split').value);index=wasLabeled&&oldIndex+1<rows.length?oldIndex+1:nextUnlabeled(oldIndex);lastSave=performance.now();render();status(`已保存 ${grade} 分`);window.scrollTo({top:0,behavior:'instant'});}catch(e){fail(new Error('保存未确认：'+e.message+' 请重新读取，确认本地进度后继续。'));}finally{busy=false;renderControls();}
+}
+document.querySelectorAll('.grade').forEach(b=>b.addEventListener('click',()=>save(Number(b.dataset.grade))));
+$('prev').onclick=()=>{index=Math.max(0,index-1);render();};$('next').onclick=()=>{index=Math.min(rows.length-1,index+1);render();};$('skip').onclick=()=>{const previous=index,next=nextUnlabeled(index);index=next;render();status(next===previous&&rows.filter(r=>!labeled(r)).length===1?'这是最后一条未标注评论，可稍后继续':'已跳过，没有保存分数');};
+$('split').onchange=chooseSplit;$('reload').onclick=load;$('reviewAll').onclick=()=>{index=0;render();};
+document.addEventListener('keydown',event=>{if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||['INPUT','SELECT','TEXTAREA'].includes(event.target.tagName)||busy||failed)return;if(['0','1','2'].includes(event.key)){event.preventDefault();save(Number(event.key));}else if(event.key==='ArrowLeft'&&!$('prev').disabled){event.preventDefault();$('prev').click();}else if(event.key==='ArrowRight'&&!$('next').disabled){event.preventDefault();$('next').click();}});
+window.addEventListener('beforeunload',event=>{if(busy){event.preventDefault();event.returnValue='';}});
+load();
+</script>
+</html>
