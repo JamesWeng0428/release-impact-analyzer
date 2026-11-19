@@ -59,6 +59,9 @@ if(RIA_BUILD_TESTS)
   target_link_libraries(ria_tests PRIVATE ria_core ria_options GTest::gtest_main)
   include(GoogleTest)
   gtest_discover_tests(ria_tests)
+  add_test(NAME Cli.ArgumentValidation COMMAND ${CMAKE_COMMAND}
+    -DRIA=$<TARGET_FILE:ria> -DCORPUS=${CMAKE_CURRENT_SOURCE_DIR}/examples/sample_posts.txt
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_cli.cmake)
 endif()
 
 if(RIA_BUILD_PYTHON)

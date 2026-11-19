@@ -6,6 +6,8 @@ import argparse
 import json
 from pathlib import Path
 
+from crawler.appstore_reviews import load_reviews
+
 try:
     import ria
 except ImportError as error:
@@ -45,8 +47,7 @@ def expand_query(query: str) -> str:
 
 def load_documents(path: Path) -> list[dict]:
     # A missing corpus is an error, not a successful search over zero reviews.
-    with path.open(encoding="utf-8") as stream:
-        return [json.loads(line) for line in stream if line.strip()]
+    return list(load_reviews(path).values())
 
 
 class ReviewSearch:

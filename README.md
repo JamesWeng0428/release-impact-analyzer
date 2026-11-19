@@ -35,6 +35,20 @@ evaluation/    queries, blind annotation pools and ranking metrics
 
 ## Build and test
 
+Use Python 3.12 (the CI-tested version), a C++20 compiler, CMake 3.25+ and
+Ninja. From a fresh checkout, create an isolated environment first:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+```
+
+Use this environment for both CMake's Python interpreter and every Python
+command below. The first build downloads GoogleTest; installing dependencies
+also requires network access. Tests and examples then run offline. Build
+directories are machine-specific: regenerate them after moving a checkout.
+
 ```bash
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
@@ -77,6 +91,73 @@ Search returns the original review text and metadata. The `--version` filter
 means **app version**, not device firmware. BM25 scores use the entire collection
 even when results are filtered. Search results do not change the denominator
 used by the release timeline or regression analysis.
+
+## Complete release impact report
+
+After collecting data, one command combines the timeline, all regression tests,
+recovery bounds and original review evidence:
+
+```bash
+python -m analysis.report --output build-py/impact-report.md
+python -m analysis.report --format json --output build-py/impact-report.json
+```
+
+The report needs no native bindings. It records input SHA-256 fingerprints,
+analysis parameters, sample sizes and illustrative complaint/non-complaint
+reviews (up to two of each per version, sorted by review ID). Selecting evidence
+does not filter the statistical population. Search remains a separate command.
+Reports contain review text and are local outputs, not committed artifacts.
+
+An offline example works immediately after cloning:
+
+```bash
+python -m analysis.report --reviews examples/retrieval_reviews.jsonl
+```
+
+This tiny synthetic corpus intentionally reports insufficient comparable
+versions under the default thresholds. End-to-end tests also construct a larger
+synthetic spike/recovery scenario and verify the expected conclusions.
+
+All analysis commands require an existing, nonempty review file. Invalid JSON,
+duplicate IDs, invalid ratings, version strings or dates produce file/line
+diagnostics. Missing data is never reported as evidence of no regression.
+Official release history is optional: commands use `data/app_releases.jsonl`
+when present, or estimate dates from first reviews when absent. An explicit
+`--releases PATH` must exist and contain valid records. Dates in input records
+must be ISO 8601 timestamps with timezones. Versions are ordered numerically.
+
+The collector alone permits a missing destination on its first run. Failed
+collection leaves the previous dataset intact; review and release writes use
+atomic replacement. Run only one collector per output file at a time.
+
+## Reproduce metrics and measure performance
+
+Published AI evaluation metrics now reproduce from a fresh clone, without
+native bindings, network access or the private review corpus:
+
+```bash
+python -m evaluation.reproduce
+```
+
+This checks frozen rankings, queries, label/report hashes and recomputes every
+per-query and aggregate metric for dev, test and all. It does **not** rerun
+retrieval or turn AI labels into human ground truth. See
+[evaluation/README.md](evaluation/README.md) for full corpus requirements.
+
+Measure all three search methods on your local corpus:
+
+```bash
+PYTHONPATH=build-py python -m evaluation.benchmark --output build-py/benchmark.json
+```
+
+The output records corpus/query hashes, environment, load/index time, warm-query
+p50/p95/max latency and whole-process peak RSS (including Python and native
+memory). It does not measure filtered queries or per-request startup time.
+See [the measured local baseline](evaluation/performance_baseline.md).
+CI verifies correctness and runs the benchmark as a smoke check; machine-specific
+latency/memory thresholds are not enforced on shared runners.
+
+## Prepare a new retrieval experiment
 
 Freeze the local corpus and prepare the real relevance annotation task:
 
@@ -189,9 +270,13 @@ Join the labels to `data/appstore_reviews.jsonl` using its `id` field.
 - [x] Regression detection: Wilson intervals, one-sided Fisher exact tests against the previous versions, Benjamini-Hochberg FDR control
 - [x] Fix verification (later releases vs regression and frozen pre-regression baseline, with uncertainty bounds)
 - [x] Relevance evaluation pipeline (NDCG@10, P@5; keyword vs BM25 vs expansion)
+- [x] Unified impact report with input fingerprints and review evidence
+- [x] Input/error handling, offline end-to-end tests and network-failure tests
+- [x] Public frozen-ranking metric reproduction and CI checks
+- [x] Latency/peak-RSS benchmark with explicit measurement scope
 - [ ] Human relevance judgments + final held-out comparison
 - [ ] Topic modeling + per-release issue trends
-- [ ] CI regression gates on quality, latency and memory
+- [ ] Independent human quality validation and calibrated performance budgets
 
 ## Fix verification
 

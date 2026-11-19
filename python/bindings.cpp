@@ -3,9 +3,6 @@
 //   import ria
 //   ria.tokenize("Edge 1050 sync failed")
 
-#include <cmath>
-#include <stdexcept>
-
 #include "ria/bm25.h"
 #include "ria/inverted_index.h"
 #include "ria/tokenizer.h"
@@ -32,13 +29,7 @@ PYBIND11_MODULE(ria, m) {
   pybind11::class_<ria::SearchResult>(m, "SearchResult")
       .def_readonly("doc", &ria::SearchResult::doc)
       .def_readonly("score", &ria::SearchResult::score);
-  m.def("bm25_search", [](const ria::InvertedIndex& index, std::string_view query,
-                          std::size_t k, const ria::Bm25Params& params) {
-    if (!std::isfinite(params.k1) || params.k1 < 0 ||
-        !std::isfinite(params.b) || params.b < 0 || params.b > 1) {
-      throw std::invalid_argument("BM25 requires finite k1 >= 0 and 0 <= b <= 1");
-    }
-    return ria::bm25_search(index, query, k, params);
-  }, pybind11::arg("index"), pybind11::arg("query"), pybind11::arg("k") = 10,
+  m.def("bm25_search", &ria::bm25_search,
+     pybind11::arg("index"), pybind11::arg("query"), pybind11::arg("k") = 10,
      pybind11::arg("params") = ria::Bm25Params{});
 }

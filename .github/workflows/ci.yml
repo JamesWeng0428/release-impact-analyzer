@@ -63,3 +63,12 @@ jobs:
         run: |
           python -m evaluation.retrieval prepare --reviews examples/retrieval_reviews.jsonl --queries examples/retrieval_queries.jsonl --out build-py/evaluation-example
           python -m evaluation.retrieval score --workspace build-py/evaluation-example --judgments examples/retrieval_judgments.csv --split all --report build-py/example-report.json
+      - name: Reproduce published metrics without private corpus or native bindings
+        run: python -m evaluation.reproduce
+      - name: Exercise complete impact report and benchmark
+        env:
+          PYTHONPATH: build-py
+        run: |
+          python -m analysis.report --reviews examples/retrieval_reviews.jsonl --format json --output build-py/impact-example.json
+          python -m analysis.report --reviews examples/retrieval_reviews.jsonl --output build-py/impact-example.md
+          python -m evaluation.benchmark --reviews examples/retrieval_reviews.jsonl --queries examples/retrieval_queries.jsonl --repetitions 3 --output build-py/benchmark.json

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.4",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "reviews": 1435,
+  "queries": 24,
+  "repetitions": 20,
+  "warmup": 2,
+  "top_k": 10,
+  "reviews_sha256": "1fbae04b962d58609b770690fa11d35876f78bf0dca3b9a0fd679249e0a49e31",
+  "queries_sha256": "b17fccc061a4394e58b69727d4a2e834f2131f3dab53f6fbd08d70403b40f4bc",
+  "implementation_sha256": {
+    "src/bm25.cpp": "d5bdb5fd53ac9cd6c55421e511de37e50529bb49a1d4e24139758e47001348b5",
+    "src/inverted_index.cpp": "7201804f9e42eeb2d32d818f0f5cda81e89abe29661e5dac13aaa8648b0e5ba7",
+    "src/tokenizer.cpp": "7731a32ef0a06e111b1b9085f8f00a252a17832c58ce8d68d856ba11eddccb1c",
+    "python/bindings.cpp": "add4e3dae4ca919b2bced942e6de1029f03340a5a43c9de793f0d51af4815674",
+    "retrieval/search.py": "3504c7fff5b922282ba3827b75489c6b3dcf87aec059e2c8c682f49f99e7a9a5",
+    "evaluation/benchmark.py": "7b89137a2825ea09e5f8731b870caf0feb7f1b73c3babc18589909f172e3abf6"
+  },
+  "load_and_index_seconds": 0.024913374974858016,
+  "process_peak_rss_mib": 37.109375,
+  "timings": {
+    "keyword": {
+      "queries_measured": 480,
+      "p50_ms": 0.17966650193557143,
+      "p95_ms": 0.3690409939736128,
+      "max_ms": 0.39929201011545956
+    },
+    "bm25": {
+      "queries_measured": 480,
+      "p50_ms": 0.01016599708236754,
+      "p95_ms": 0.012750009773299098,
+      "max_ms": 0.016708014300093055
+    },
+    "bm25_expanded": {
+      "queries_measured": 480,
+      "p50_ms": 0.011708005331456661,
+      "p95_ms": 0.01575000351294875,
+      "max_ms": 0.03270799061283469
+    }
+  },
+  "limitations": [
+    "Peak RSS includes Python, native code, inputs and all benchmark work; not index size.",
+    "Latency excludes loading/indexing and CLI startup; filters are not measured.",
+    "Results describe this machine and corpus; not a portable performance guarantee."
+  ]
+}

@@ -4,6 +4,7 @@ compile_commands.json
 __pycache__/
 .pytest_cache/
 *.so
+.venv/
 .DS_Store
 
 # Crawled forum posts and changelogs stay local.

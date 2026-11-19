@@ -16,11 +16,31 @@ from __future__ import annotations
 
 import argparse
 import math
-from pathlib import Path
+from analysis.release_timeline import build_timeline, version_key
+from analysis.inputs import add_input_arguments, load_inputs
 
-from analysis.release_timeline import build_timeline
-from crawler.app_releases import load_releases
-from crawler.appstore_reviews import load_reviews
+
+def validate_analysis(rows, window, min_reviews, min_delta, alpha) -> None:
+    """Validate before filtering so bad counts cannot disappear as low samples."""
+    for name, value in (("window", window), ("min_reviews", min_reviews)):
+        if type(value) is not int or value < 1:
+            raise ValueError(f"{name} must be a positive integer")
+    for name, value in (("min_delta", min_delta), ("alpha", alpha)):
+        if type(value) not in (int, float) or not math.isfinite(value):
+            raise ValueError(f"{name} must be finite")
+    if not 0 <= min_delta <= 1:
+        raise ValueError("min_delta must be between 0 and 1")
+    if not 0 < alpha < 1:
+        raise ValueError("alpha must be between 0 and 1")
+    versions = [r["version"] for r in rows]
+    if len(set(versions)) != len(versions):
+        raise ValueError("versions must be unique")
+    if versions != sorted(versions, key=version_key):
+        raise ValueError("rows must be in release order")
+    for row in rows:
+        k, n = row["complaints"], row["reviews"]
+        if type(k) is not int or type(n) is not int or not 0 <= k <= n:
+            raise ValueError("counts must be integers satisfying 0 <= complaints <= reviews")
 
 
 def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
@@ -73,6 +93,7 @@ def detect_changes(
 
     `rows` come from build_timeline() and must be in release order.
     """
+    validate_analysis(rows, window, min_reviews, min_delta, alpha)
     rows = [r for r in rows if r["reviews"] >= min_reviews]
     tests = []
     for i in range(window, len(rows)):
@@ -127,8 +148,7 @@ def format_tests(tests: list[dict]) -> str:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--reviews", type=Path, default=Path("data/appstore_reviews.jsonl"))
-    parser.add_argument("--releases", type=Path, default=Path("data/app_releases.jsonl"))
+    add_input_arguments(parser)
     parser.add_argument("--window", type=int, default=3, help="previous versions pooled as baseline")
     parser.add_argument("--min-reviews", type=int, default=10)
     parser.add_argument("--min-delta", type=float, default=0.10, help="minimum rate change, e.g. 0.10")
@@ -136,8 +156,11 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--all", action="store_true", help="show every tested version")
     args = parser.parse_args(argv)
 
-    rows = build_timeline(list(load_reviews(args.reviews).values()), load_releases(args.releases))
-    tests = detect_changes(rows, args.window, args.min_reviews, args.min_delta, args.alpha)
+    try:
+        rows = build_timeline(*load_inputs(args.reviews, args.releases))
+        tests = detect_changes(rows, args.window, args.min_reviews, args.min_delta, args.alpha)
+    except (OSError, ValueError, KeyError) as error:
+        parser.error(str(error))
     shown = tests if args.all else [t for t in tests if t["verdict"]]
     print(format_tests(shown))
     print(f"\n{sum(bool(t['verdict']) for t in tests)} of {len(tests)} tested versions flagged")

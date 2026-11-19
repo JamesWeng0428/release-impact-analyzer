@@ -14,12 +14,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 import time
 import urllib.error
 import urllib.request
 from collections.abc import Iterator
 from pathlib import Path
+
+from crawler.records import read_records, timestamp, validate_review, write_records
 
 GARMIN_CONNECT_APP_ID = "583446403"
 DEFAULT_COUNTRIES = ("us", "gb", "ca", "au", "nz", "ie")
@@ -59,6 +62,10 @@ def parse_feed(payload: dict, country: str) -> list[dict]:
 
 def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict:
     """GETs a JSON URL, retrying on rate limits, server errors and timeouts."""
+    if type(retries) is not int or retries < 0:
+        raise ValueError("retries must be a nonnegative integer")
+    if not math.isfinite(backoff) or backoff < 0:
+        raise ValueError("backoff must be finite and nonnegative")
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     for attempt in range(retries + 1):
         try:
@@ -68,7 +75,7 @@ def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict:
             retryable = err.code == 429 or err.code >= 500
             if not retryable or attempt == retries:
                 raise
-        except urllib.error.URLError:
+        except (urllib.error.URLError, TimeoutError):
             if attempt == retries:
                 raise
         time.sleep(backoff * 2**attempt)
@@ -79,6 +86,8 @@ def fetch_country(
     country: str, app_id: str = GARMIN_CONNECT_APP_ID, delay: float = 1.5
 ) -> Iterator[dict]:
     """Yields a country's reviews page by page until the feed runs out."""
+    if not math.isfinite(delay) or delay < 0:
+        raise ValueError("delay must be finite and nonnegative")
     for page in range(1, MAX_PAGES + 1):
         url = FEED_URL.format(country=country, page=page, app_id=app_id)
         reviews = parse_feed(fetch_json(url), country)
@@ -88,22 +97,15 @@ def fetch_country(
         time.sleep(delay)  # stay polite between requests
 
 
-def load_reviews(path: Path) -> dict[str, dict]:
-    if not path.exists():
-        return {}
-    with path.open(encoding="utf-8") as f:
-        return {r["id"]: r for r in map(json.loads, f) if r}
+def load_reviews(path: Path, *, missing_ok: bool = False) -> dict[str, dict]:
+    return {r["id"]: r for r in read_records(path, validate_review, "id", missing_ok=missing_ok)}
 
 
 def save_reviews(path: Path, reviews: dict[str, dict]) -> None:
     """Writes reviews oldest first, via a temp file so a crash never
     leaves a half-written dataset behind."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with tmp.open("w", encoding="utf-8") as f:
-        for review in sorted(reviews.values(), key=lambda r: (r["date"], r["id"])):
-            f.write(json.dumps(review, ensure_ascii=False) + "\n")
-    tmp.replace(path)
+    rows = sorted(reviews.values(), key=lambda r: (timestamp(r["date"]), r["id"]))
+    write_records(path, rows, validate_review)
 
 
 def to_corpus_line(review: dict) -> str:
@@ -112,7 +114,9 @@ def to_corpus_line(review: dict) -> str:
 
 
 def cmd_fetch(args: argparse.Namespace) -> None:
-    reviews = load_reviews(args.out)
+    if not math.isfinite(args.delay) or args.delay < 0:
+        raise ValueError("delay must be finite and nonnegative")
+    reviews = load_reviews(args.out, missing_ok=True)
     before = len(reviews)
     for country in args.countries:
         count = 0
@@ -148,7 +152,10 @@ def main(argv: list[str] | None = None) -> None:
     export.set_defaults(func=cmd_export)
 
     args = parser.parse_args(argv)
-    args.func(args)
+    try:
+        args.func(args)
+    except (OSError, ValueError, KeyError) as error:
+        parser.error(str(error))
 
 
 if __name__ == "__main__":

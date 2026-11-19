@@ -81,6 +81,32 @@ explicitly identified pilot; they are not independent human ground truth.
 
 ## Score
 
+### Recompute the published pilot from a fresh clone
+
+```bash
+python -m evaluation.reproduce
+```
+
+`frozen/runs.jsonl` and `frozen/queries.jsonl` are byte-identical copies of the
+original frozen rankings and queries. They contain review IDs, scores and query
+needs, but no review text. Together with the committed AI judgments and reports,
+they permit hash-checked reproduction of all per-query and aggregate metrics
+without the private corpus or the C++ module. CI runs this check.
+
+The original `ai_annotation_manifest.json` remains unchanged. Its source-code
+hashes describe the implementation at commit `c884df6`, before subsequent input
+validation and CLI changes; they are historical provenance, not hashes of every
+later revision. Its snapshot, judgment and report hashes are still verified.
+
+This is **metric reproduction from saved rankings**. To reproduce the ranking
+experiment itself, obtain the original 1,435-review snapshot locally, verify its
+hash against the manifest, build the bindings and prepare into a fresh workspace.
+A new App Store download is a different corpus and must not be presented as the
+same experiment. The existing `prepare`/`score` workflow below still supports new
+experiments and independent human annotation.
+
+### Score a local corpus snapshot
+
 ```bash
 python3 -m evaluation.retrieval score --split dev --report evaluation/workspace/dev-report.json
 python3 -m evaluation.retrieval score --split test --report evaluation/workspace/test-report.json

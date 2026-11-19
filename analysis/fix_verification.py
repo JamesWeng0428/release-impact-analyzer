@@ -15,12 +15,10 @@ import argparse
 import json
 import math
 from functools import lru_cache
-from pathlib import Path
 
-from analysis.regression import detect_changes
-from analysis.release_timeline import build_timeline, version_key
-from crawler.app_releases import load_releases
-from crawler.appstore_reviews import load_reviews
+from analysis.regression import detect_changes, validate_analysis
+from analysis.release_timeline import build_timeline
+from analysis.inputs import add_input_arguments, load_inputs
 
 
 @lru_cache(maxsize=128)
@@ -97,25 +95,9 @@ def verify_fixes(
     Low-sample rows remain visible but do not enter tests or pooled baselines.
     The baseline is frozen at the versions preceding each regression.
     """
-    if not isinstance(window, int) or window < 1:
-        raise ValueError("window must be a positive integer")
-    if not isinstance(min_reviews, int) or min_reviews < 1:
-        raise ValueError("min_reviews must be a positive integer")
-    if not 0 <= min_delta <= 1:
-        raise ValueError("min_delta must be between 0 and 1")
-    if not 0 < alpha < 1:
-        raise ValueError("alpha must be between 0 and 1")
-    if not 0 <= recovery_margin <= 1:
+    validate_analysis(rows, window, min_reviews, min_delta, alpha)
+    if type(recovery_margin) not in (int, float) or not 0 <= recovery_margin <= 1:
         raise ValueError("recovery_margin must be between 0 and 1")
-    versions = [r["version"] for r in rows]
-    if len(set(versions)) != len(versions):
-        raise ValueError("versions must be unique")
-    if versions != sorted(versions, key=version_key):
-        raise ValueError("rows must be in release order")
-    for row in rows:
-        k, n = row["complaints"], row["reviews"]
-        if not isinstance(k, int) or not isinstance(n, int) or not 0 <= k <= n:
-            raise ValueError("counts must be integers satisfying 0 <= complaints <= reviews")
 
     eligible = [r for r in rows if r["reviews"] >= min_reviews]
     regressions = [
@@ -263,8 +245,7 @@ def format_report(report: dict) -> str:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--reviews", type=Path, default=Path("data/appstore_reviews.jsonl"))
-    parser.add_argument("--releases", type=Path, default=Path("data/app_releases.jsonl"))
+    add_input_arguments(parser)
     parser.add_argument("--window", type=int, default=3, help="previous eligible versions pooled as baseline")
     parser.add_argument("--min-reviews", type=int, default=10)
     parser.add_argument("--min-delta", type=float, default=0.10, help="minimum observed change in rate")
@@ -273,13 +254,13 @@ def main(argv: list[str] | None = None) -> None:
                         help="maximum tolerated excess over baseline, e.g. 0.10 = 10 percentage points")
     parser.add_argument("--json", action="store_true", help="emit the full structured report")
     args = parser.parse_args(argv)
-    rows = build_timeline(list(load_reviews(args.reviews).values()), load_releases(args.releases))
     try:
+        rows = build_timeline(*load_inputs(args.reviews, args.releases))
         report = verify_fixes(
             rows, args.window, args.min_reviews, args.min_delta,
             args.alpha, args.recovery_margin,
         )
-    except ValueError as error:
+    except (OSError, ValueError, KeyError) as error:
         parser.error(str(error))
     print(json.dumps(report, indent=2, allow_nan=False) if args.json else format_report(report))
 

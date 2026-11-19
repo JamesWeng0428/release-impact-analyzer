@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <stdexcept>
 #include <unordered_map>
 
 #include "ria/tokenizer.h"
@@ -18,6 +19,10 @@ double bm25_idf(std::size_t num_docs, std::size_t df) {
 std::vector<SearchResult> bm25_search(const InvertedIndex& index,
                                       std::string_view query, std::size_t k,
                                       const Bm25Params& params) {
+  if (!std::isfinite(params.k1) || params.k1 < 0 ||
+      !std::isfinite(params.b) || params.b < 0 || params.b > 1) {
+    throw std::invalid_argument("BM25 requires finite k1 >= 0 and 0 <= b <= 1");
+  }
   if (k == 0) {
     return {};
   }

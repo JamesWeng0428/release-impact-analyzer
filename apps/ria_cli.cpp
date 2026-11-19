@@ -6,6 +6,7 @@
 // Each line typed on stdin is a query; the top-k documents are printed.
 
 #include <cstddef>
+#include <charconv>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -25,7 +26,15 @@ int main(int argc, char** argv) {
     std::cerr << "cannot open " << argv[1] << '\n';
     return 1;
   }
-  const std::size_t k = argc == 3 ? std::stoul(argv[2]) : 5;
+  std::size_t k = 5;
+  if (argc == 3) {
+    const std::string value(argv[2]);
+    const auto parsed = std::from_chars(value.data(), value.data() + value.size(), k);
+    if (parsed.ec != std::errc{} || parsed.ptr != value.data() + value.size()) {
+      std::cerr << "k must be a nonnegative integer within size_t range\n";
+      return 2;
+    }
+  }
 
   ria::InvertedIndex index;
   std::vector<std::string> texts;  // doc id -> original line, for display

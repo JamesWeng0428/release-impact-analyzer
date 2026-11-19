@@ -4,7 +4,9 @@
 
 #include <cmath>
 #include <initializer_list>
+#include <limits>
 #include <ostream>
+#include <stdexcept>
 #include <string_view>
 #include <vector>
 
@@ -15,6 +17,20 @@ void PrintTo(const SearchResult& r, std::ostream* os) {
 }  // namespace ria
 
 namespace {
+
+TEST(Bm25Search, RejectsInvalidParametersBeforeEarlyReturn) {
+  ria::InvertedIndex index;
+  const double nan = std::numeric_limits<double>::quiet_NaN();
+  const double inf = std::numeric_limits<double>::infinity();
+  for (const ria::Bm25Params params : {ria::Bm25Params{-1, 0.75},
+                                      ria::Bm25Params{nan, 0.75},
+                                      ria::Bm25Params{inf, 0.75},
+                                      ria::Bm25Params{1.2, -1},
+                                      ria::Bm25Params{1.2, 2},
+                                      ria::Bm25Params{1.2, nan}}) {
+    EXPECT_THROW(ria::bm25_search(index, "", 0, params), std::invalid_argument);
+  }
+}
 
 using ria::bm25_idf;
 using ria::bm25_search;
